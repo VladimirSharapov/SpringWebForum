@@ -11,6 +11,8 @@
 
     <artifactId>webforum-service</artifactId>
 
+
+
     <build>
         <plugins>
             <plugin>
