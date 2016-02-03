@@ -10,16 +10,23 @@
     </parent>
 
     <artifactId>webforum-web-view</artifactId>
-
+    <name>${project.artifactId}</name>
     <packaging>war</packaging>
 
 
     <dependencies>
         <dependency>
-            <groupId>org.shv.webforum</groupId>
-            <artifactId>webforum-service</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>webforum-web-controller</artifactId>
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>spring-webforum</finalName>
+    </build>
 
 </project>

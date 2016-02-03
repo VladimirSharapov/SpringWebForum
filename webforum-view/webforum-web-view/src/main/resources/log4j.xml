@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="false" xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${catalina.home}/logs/springwebforum.log"/>
+        <param name="MaxFileSize" value="5MB"/>
+        <param name="Encoding" value="UTF-8"/>
+        <!--How many old log files to keep-->
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.EnhancedPatternLayout">
+            <!--
+            The username is set by MDC feature in a web filter. Therefore username is logged even in guts
+            of Spring or Hibernate. More info on MDC: http://logback.qos.ch/manual/mdc.html
+            -->
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%-5p][%-16.16t][%X{userName}][%30c] - %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="org.shv">
+        <level value="DEBUG"/>
+    </logger>
+    <root>
+        <priority value="WARN"/>
+        <appender-ref ref="fileAppender"/>
+    </root>
+
+</log4j:configuration>

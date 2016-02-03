@@ -34,7 +34,7 @@ import javax.validation.ConstraintViolationException;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/applicationContext-dao.xml")
 @Transactional
-public class ExternalLinkHibernateDaoTest {
+public class ExternalLinkDaoImplTest {
     @Autowired
     private SessionFactory sessionFactory;
     @Autowired
