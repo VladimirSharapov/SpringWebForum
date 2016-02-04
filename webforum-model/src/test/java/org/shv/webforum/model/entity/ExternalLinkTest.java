@@ -18,6 +18,7 @@ public class ExternalLinkTest {
         String title = "title";
         String hint = "hint";
         ExternalLink externalLink = new ExternalLink(url, title, hint);
+
         assertEquals(url, externalLink.getUrl());
         assertEquals(title, externalLink.getTitle());
         assertEquals(hint, externalLink.getHint());
@@ -29,6 +30,7 @@ public class ExternalLinkTest {
         String title = "title";
         String hint = "hint";
         ExternalLink externalLink = new ExternalLink(url, title, hint);
+
         assertEquals("http://" + url, externalLink.getUrl());
         assertEquals(title, externalLink.getTitle());
         assertEquals(hint, externalLink.getHint());
@@ -40,6 +42,7 @@ public class ExternalLinkTest {
         String title = "title";
         String hint = "hint";
         ExternalLink externalLink = new ExternalLink(url, title, hint);
+
         assertEquals("", externalLink.getUrl());
         assertEquals(title, externalLink.getTitle());
         assertEquals(hint, externalLink.getHint());
@@ -51,6 +54,7 @@ public class ExternalLinkTest {
         String title = "title";
         String hint = null;
         ExternalLink externalLink = new ExternalLink(url,title,hint);
+
         assertEquals("http://" + url, externalLink.getUrl());
         assertEquals(title, externalLink.getTitle());
         assertNull(externalLink.getHint());
@@ -62,6 +66,7 @@ public class ExternalLinkTest {
         String title = "title";
         String hint =  "  hint  ";
         ExternalLink externalLink = new ExternalLink(url,title,hint);
+
         assertEquals("http://" + url, externalLink.getUrl());
         assertEquals(title, externalLink.getTitle());
         assertEquals(hint.trim(), externalLink.getHint());
