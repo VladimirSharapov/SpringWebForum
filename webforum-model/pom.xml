@@ -20,6 +20,16 @@
             <artifactId>commons-lang</artifactId>
         </dependency>
 
+        <!-- Joda Time -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time-hibernate</artifactId>
+        </dependency>
+
         <!-- Hibernate Validation -->
         <dependency>
             <groupId>javax.validation</groupId>

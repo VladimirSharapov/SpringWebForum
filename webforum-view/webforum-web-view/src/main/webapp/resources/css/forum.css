@@ -1,0 +1,101 @@
+.logo-text {
+    font-family: 'Arial', cursive;
+}
+
+.forum-sections-header-actions {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.forum-sections-recent-unanswered {
+    font-weight: bold;
+    padding-left: 2px;
+    color: rgb(85, 85, 85)
+}
+
+.forum-pagination {
+    margin: 0px;
+}
+
+.forum-sections-branch-description-container {
+    font-style: italic;
+    font-size: 10px;
+}
+
+#topics-table .topics-posts {
+    font-size: 11px;
+}
+
+.rss-icon {
+    vertical-align: middle;
+}
+
+.forum-sections-stats-container {
+    min-height: 10px;
+    padding: 5px;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.forum-sections-header {
+    margin: 0;
+}
+
+.forum-sections-userstats-container {
+    min-height: 10px;
+    padding: 5px;
+    margin: 0px;
+}
+
+.table-title {
+    border: 0px !important;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    padding-top: 10px !important;
+
+    /* Use this styles instead of <h3> tag inside <th>. To fit HTML5 standard*/
+    margin: 0;
+    font-weight: bold;
+    background-color: #444 !important;
+    color: #444;
+    text-rendering: optimizelegibility;
+    line-height: 27px;
+    font-size: 18px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.table-with-titles td, .table-with-titles th {
+    border: 1px solid #DDDDDD;
+}
+
+
+#topics-table {
+    word-wrap: break-word;
+}
+
+#topics-table td {
+    padding-top: 4px;
+    padding-bottom: 6px;
+}
+
+#topics-table .branch-title {
+    font-weight: bold;
+    line-height: 18px;
+    font-size: 14px;
+}
+
+#topics-table .title-col{
+    word-break:break-all;
+}
+
+.h-nostyle {
+    line-height: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}

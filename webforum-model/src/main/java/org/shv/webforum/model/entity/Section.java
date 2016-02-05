@@ -127,7 +127,7 @@ public class Section extends BaseEntity {
      *
      * @param branches - list of branches
      */
-    protected void setBranches(List<Branch> branches) {
+    public void setBranches(List<Branch> branches) {
         this.branches = branches;
     }
 

@@ -30,10 +30,10 @@ public class SectionTest {
         section = EntityFactory.getDefaultSection();
 
         List<Branch> branchList = new ArrayList<>();
-        branch1 = new Branch("branch1");
+        branch1 = new Branch("branch1","");
         branch1.setId(1L);
 
-        branch2 = new Branch("branch2");
+        branch2 = new Branch("branch2","");
         branch2.setId(BRANCH_ID);
 
         branchList.add(branch1);
@@ -46,14 +46,14 @@ public class SectionTest {
     public void testAddBranch() {
         Section section = EntityFactory.getDefaultSection();
 
-        section.addOrUpdateBranch(new Branch(""));
+        section.addOrUpdateBranch(new Branch("",""));
 
         assertEquals(1,section.getBranches().size());
     }
 
     @Test
     public void testUpdateBranch() {
-        Branch newBranch = new Branch(NEW_BRANCH_NAME);
+        Branch newBranch = new Branch(NEW_BRANCH_NAME,"");
         newBranch.setId(BRANCH_ID);
 
         section.addOrUpdateBranch(newBranch);
@@ -64,7 +64,7 @@ public class SectionTest {
 
     @Test
     public void testDeleteBranch() {
-        Branch branchToDelete = new Branch("");
+        Branch branchToDelete = new Branch("","");
         branchToDelete.setId(BRANCH_ID);
 
         section.deleteBranch(branchToDelete);
