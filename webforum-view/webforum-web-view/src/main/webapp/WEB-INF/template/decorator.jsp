@@ -8,10 +8,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" media="screen"
-        href="${pageContext.request.contextPath}/resources/css/bootstrap.css"/>
-  <link rel="stylesheet" type="text/css" media="screen"
-        href="${pageContext.request.contextPath}/resources/css/application.css"/>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/forum.css">
 
   <decorator:head/>
 

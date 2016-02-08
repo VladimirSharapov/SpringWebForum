@@ -99,3 +99,42 @@
     font-size: inherit;
     font-weight: inherit;
 }
+
+
+#branch-header {
+    line-height: 3.2em;
+    overflow: hidden;
+}
+
+#branch-header h2 {
+    float: left;
+}
+
+#branch-header #right-block {
+    float: right;
+    overflow: hidden;
+}
+
+#branch-header #right-block a {
+    font-weight: bold;
+    padding-left: 2px;
+    color: rgb(85, 85, 85);
+}
+
+.breadcrumb-link {
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.post-content-body {
+    overflow: auto;
+    line-height: 16px;
+    font-size: 13px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.table .post-content-td {
+    vertical-align: top;
+    word-break: break-word;
+}
