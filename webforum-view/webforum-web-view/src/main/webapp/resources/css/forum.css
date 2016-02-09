@@ -1,5 +1,23 @@
+@media (min-width: 980px) {
+    body {
+        padding-top: 50px; /*60px to make the container go all the way to the bottom of the topbar */
+    }
+
+    .nav-collapse.collapse {
+        display: inline;
+    }
+}
+
 .logo-text {
     font-family: 'Arial', cursive;
+}
+
+
+.logo-container {
+    float: left;
+    display: block;
+    padding: 5px 12px 0px 0px;
+    line-height: 1;
 }
 
 .forum-sections-header-actions {
@@ -137,4 +155,59 @@
 .table .post-content-td {
     vertical-align: top;
     word-break: break-word;
+}
+
+.forum-logo {
+    height: 31px;
+    width: 34px;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+ul.lang-menu li img {
+    vertical-align: middle;
+}
+
+#lang-selector-toggle-li .tooltip {
+    white-space: pre-wrap;
+    max-width: 71px;
+}
+
+#lang-selector-toggle-li .tooltip .tooltip-inner {
+    word-wrap: normal;
+}
+
+.topline-dropdown-menu {
+    margin: 10px 0 2px 15px;
+}
+
+
+.form-login-related {
+    max-width: 480px;
+}
+
+
+#login-form .form-actions {
+    padding-left: 0px;
+}
+
+.control-group input[type=checkbox],
+.control-group input[type=radio] {
+    float: left;
+    margin-right: 5px;
+}
+
+
+.help-inline._error {
+    color: #b94a48;
+}
+
+
+#page-signin-submit-button {
+    clear: left;
+    width: 220px;
+    height: 32px;
+    font-size: 13px;
 }

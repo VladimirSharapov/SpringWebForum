@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <fmt:setBundle basename="messages"/>
 <fmt:setLocale value="en"/>
@@ -10,11 +11,25 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/forum.css">
+  <script>
+    $localeCode = '<spring:message code="locale.code" htmlEscape="true"/>';
+  </script>
 
+  <script src="${pageContext.request.contextPath}/resources/javascript/lib/jquery/jquery-1.7.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/lib/jquery/jquery.truncate.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/lib/jquery/jquery-ui.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/lib/jquery/jquery-ui-i18n.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/lib/jquery/jquery.prettyPhoto.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/lib/jquery/contextmenu/jquery.contextMenu.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/lib/jquery/contextmenu/jquery-fieldselection.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/lib/jquery/contextmenu/textarea-helper.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/lib/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/app/topline.js"></script>
   <decorator:head/>
 
 </head>
 <body>
+  <jsp:include page="../template/topLine.jsp"/>
   <decorator:body></decorator:body>
   <div class="container">
     <footer>

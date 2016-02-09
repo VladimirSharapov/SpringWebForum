@@ -16,7 +16,7 @@
     <div class="row forum-sections-header">
 
         <h1 class="pull-left logo-text">
-                    <a class="invisible-link" href="${pageContext.request.contextPath}/"><c:out value="${cmpDescription}"/></a>
+                    <a class="invisible-link" href="${pageContext.request.contextPath}/"><spring:message code='label.forum'/></a>
         </h1>
 
         <div class="pull-right">

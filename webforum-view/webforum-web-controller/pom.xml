@@ -13,6 +13,13 @@
     <name>${project.artifactId}</name>
 
     <dependencies>
+
+        <!-- Servlet API -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+
         <!-- Spring MVC -->
         <dependency>
             <groupId>org.springframework</groupId>
