@@ -12,7 +12,10 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/forum.css">
   <script>
-    $localeCode = '<spring:message code="locale.code" htmlEscape="true"/>';
+    $localeCode    = '<spring:message code="locale.code"    htmlEscape="true"/>';
+    $labelUsername = '<spring:message code="label.username" htmlEscape="true"/>';
+    $labelPassword = '<spring:message code="label.password" htmlEscape="true"/>';
+    $labelSignin   = '<spring:message code="label.signin"   htmlEscape="true"/>';
   </script>
 
   <script src="${pageContext.request.contextPath}/resources/javascript/lib/jquery/jquery-1.7.min.js"></script>
@@ -25,6 +28,14 @@
   <script src="${pageContext.request.contextPath}/resources/javascript/lib/jquery/contextmenu/textarea-helper.js"></script>
   <script src="${pageContext.request.contextPath}/resources/javascript/lib/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/javascript/app/topline.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/app/antimultipost.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/app/global.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/app/utils.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/app/keymaps.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/javascript/app/dialog.js"></script>
+  <%-- script src="${pageContext.request.contextPath}/resources/javascript/app/signin.js"></script --%>
+
+
   <decorator:head/>
 
 </head>

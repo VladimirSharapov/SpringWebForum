@@ -104,6 +104,11 @@
             <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${springVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
                 <version>${springVersion}</version>
             </dependency>
@@ -163,27 +168,27 @@
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-core</artifactId>
-                <version>3.0.5.RELEASE</version>
+                <version>${springSecurityVersion}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-config</artifactId>
-                <version>3.0.5.RELEASE</version>
+                <version>${springSecurityVersion}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-web</artifactId>
-                <version>3.0.5.RELEASE</version>
+                <version>${springSecurityVersion}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-taglibs</artifactId>
-                <version>3.0.5.RELEASE</version>
+                <version>${springSecurityVersion}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-acl</artifactId>
-                <version>3.1.1.JAVATALKS-PATCH3.RELEASE</version>
+                <version>${springSecurityVersion}</version>
             </dependency>
 
             <!-- AOP -->
@@ -301,6 +306,7 @@
                 <artifactId>webforum-web-controller</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -316,6 +322,11 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 
@@ -339,5 +350,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernateVersion>5.0.7.Final</hibernateVersion>
         <springVersion>4.2.4.RELEASE</springVersion>
+        <springSecurityVersion>3.2.3.RELEASE</springSecurityVersion>
     </properties>
 </project>

@@ -42,7 +42,7 @@ public class UserController {
      * @param response   servlet response
      * @return "success" or "fail" response status
      */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+  /*  @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(LoginUserDto loginUserDto,
                               @RequestParam(REFERER) String referer,
                               @RequestParam(value = "_spring_security_remember_me", defaultValue = "off")
@@ -55,5 +55,5 @@ public class UserController {
         System.out.println("referer: " + referer);
         return new ModelAndView("login");
 
-    }
+    } */
 }

@@ -211,3 +211,94 @@ ul.lang-menu li img {
     height: 32px;
     font-size: 13px;
 }
+
+/* user profile */
+
+.user-profile-hr {
+    margin: 6px 0 6px 0;
+}
+
+
+.user-profile-buttons-form-actions {
+    padding-left: 160px;
+}
+
+
+.space-left-medium {
+    margin-left: 4px;
+}
+
+.user-profile-container {
+    width: 630px;
+    margin: 5% 0 0 15%;
+    position: relative;
+}
+
+.user-profile-header {
+    line-height: 100px;
+}
+
+
+.user-profile-top-buttons {
+    padding-top: 4px;
+}
+
+.user-profile-buttons-avatar {
+    width: 150px;
+    display: inline-block;
+    text-align: left;
+}
+
+
+.userprofile {
+    display: inline-block;
+    width: 450px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 12px;
+}
+
+/* modal window */
+
+.modal .close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+.modal .modal-header {
+    background-color: rgb(245, 245, 245)
+}
+
+#signin-modal-dialog #signin-submit-button {
+    clear: left;
+    width: 100%;
+    height: 32px;
+    font-size: 13px;
+}
+
+#signin-modal-dialog div.control-group {
+    margin: 0 0 0 25px;
+}
+
+#signin-modal-dialog #rememberme-area {
+    margin: 0px 10px 0px 25px;
+}
+
+#signup-modal-dialog .help-block {
+    margin: 0px 5px;
+}
+
+#signup-modal-dialog input {
+    margin-bottom: 0px;
+}
+
+#signup-modal-dialog .controls {
+    margin-bottom: 7px;
+    margin-left: 20px;
+}
