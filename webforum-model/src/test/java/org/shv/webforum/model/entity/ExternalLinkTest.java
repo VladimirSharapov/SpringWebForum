@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * Test for {@link org.shv.webforum.model.entity.ExternalLink} class
+ * Test for {@link org.shv.webforum.model.entity.ExternalLink}
  *
  * @author Vladimir Sharapov
  */

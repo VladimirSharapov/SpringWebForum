@@ -18,6 +18,7 @@ public class Section extends BaseEntity {
     private static final String SECTION_DESCRIPTION_ILLEGAL_LENGTH = "{section.description.length_constraint_violation}";
     private static final String SECTION_NAME_ILLEGAL_LENGTH = "{section.name.length_constraint_violation}";
     private static final String SECTION_CANT_BE_VOID = "{section.name.emptiness_constraint_violation}";
+
     public static final int SECTION_NAME_MAX_LENGTH = 80;
     public static final int SECTION_DESCRIPTION_MAX_LENGTH = 255;
 

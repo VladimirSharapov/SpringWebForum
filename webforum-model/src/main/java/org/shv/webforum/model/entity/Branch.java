@@ -4,22 +4,17 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.shv.webforum.common.BaseEntity;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 /**
- * Forum branch that contains topics
+ * Forum branch that contains topics and belongs to section {@link org.shv.webforum.model.entity.Section}
  *
  * @author Vladimir Sharapov
  */
 public class Branch extends BaseEntity {
 
-
     private static final String BRANCH_DESCRIPTION_ILLEGAL_LENGTH = "{branch.description.length_constraint_violation}";
     private static final String BRANCH_CANT_BE_VOID = "{branch.name.emptiness_constraint_violation}";
     private static final String BRANCH_NAME_ILLEGAL_LENGTH = "{branch.name.length_constraint_violation}";
+
     public  static final int BRANCH_NAME_MAX_LENGTH = 80;
     public  static final int BRANCH_DESCRIPTION_MAX_LENGTH = 255;
 
@@ -32,13 +27,12 @@ public class Branch extends BaseEntity {
 
     private Section section;
 
+    private Post lastPost;
+
     private Integer topicsCount;
 
     private Integer postsCount;
 
-    private boolean unreadPosts;
-
-    private Post lastPost;
 
     /**
      * Default constructor, protected for using only by hibernate
@@ -47,10 +41,10 @@ public class Branch extends BaseEntity {
     }
 
     /**
-     * Create PoulpeBranch with name and description
+     * Create branch with name and description
      *
-     * @param name - name for new PoulpeBranch
-     * @param description - description for new PoulpeBranch
+     * @param name - name for new branch
+     * @param description - description for new Branch
      */
     public Branch(String name, String description) {
         this.name = name;
@@ -60,7 +54,7 @@ public class Branch extends BaseEntity {
     /**
      * Get branch name which briefly describes the topics contained in it.
      *
-     * @return PoulpeBranch name as String
+     * @return  branch name
      */
     public String getName() {
         return name;
@@ -69,7 +63,7 @@ public class Branch extends BaseEntity {
     /**
      * Set branch name.
      *
-     * @param name - PoulpeBranch name
+     * @param name - branch name
      */
     public void setName(String name) {
         this.name = name;
@@ -102,7 +96,7 @@ public class Branch extends BaseEntity {
     }
 
     /**
-     * Sets the section in which this branch is.
+     * Sets the section to which this branch belongs.
      *
      * @param section the parent section
      */
@@ -110,37 +104,55 @@ public class Branch extends BaseEntity {
         this.section = section;
     }
 
-
-    public Integer getTopicsCount() {
-        return topicsCount;
-    }
-
-    public void setTopicsCount(Integer topicsCount) {
-        this.topicsCount = topicsCount;
-    }
-
-    public Integer getPostsCount() {
-        return postsCount;
-    }
-
-    public void setPostsCount(Integer postsCount) {
-        this.postsCount = postsCount;
-    }
-
-    public boolean isUnreadPosts() {
-        return unreadPosts;
-    }
-
-    public void setUnreadPosts(boolean unreadPosts) {
-        this.unreadPosts = unreadPosts;
-    }
-
+    /**
+     * @return last post {@link org.shv.webforum.model.entity.Post} in this branch
+     */
     public Post getLastPost() {
         return lastPost;
     }
 
+    /**
+     * Set last post in this branch
+     *
+     * @param lastPost last post in this branch
+     */
     public void setLastPost(Post lastPost) {
         this.lastPost = lastPost;
+    }
+
+    /**
+     * @return number of topic in this branch
+     */
+    public Integer getTopicsCount() {
+        return topicsCount;
+    }
+
+    /**
+     * Set number of topics in this branch
+     *
+     * @param topicsCount number of topics
+     */
+    public void setTopicsCount(Integer topicsCount) {
+        this.topicsCount = topicsCount;
+    }
+
+    /**
+     * Get number of posts in this branch. This is sum of number of posts inside each topic
+     * that belongs to this branch.
+     *
+     * @return number of posts in this branch
+     */
+    public Integer getPostsCount() {
+        return postsCount;
+    }
+
+    /**
+     * Set number of posts in this branch
+     *
+     * @param postsCount number of posts in this branch
+     */
+    public void setPostsCount(Integer postsCount) {
+        this.postsCount = postsCount;
     }
 
     @Override

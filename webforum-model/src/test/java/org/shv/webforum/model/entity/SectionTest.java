@@ -12,7 +12,7 @@ import static junit.framework.Assert.assertEquals;
 
 
 /**
- * Test for {@link org.shv.webforum.model.entity.Section} class
+ * Test for {@link org.shv.webforum.model.entity.Section}
  *
  * @author Vladimir Sharapov
  */

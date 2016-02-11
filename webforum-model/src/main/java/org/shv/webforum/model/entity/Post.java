@@ -4,65 +4,89 @@ import org.joda.time.DateTime;
 import org.shv.webforum.common.BaseEntity;
 
 /**
+ * Stores information about post that user makes
+ *
  * @author Vladimir Sharapov
  */
 public class Post extends BaseEntity {
 
-    public static final String URL_SUFFIX = "/posts/";
+    private String postContent;
 
     private DateTime creationDate;
+
     private DateTime modificationDate;
+
     private User userCreated;
-    private String postContent;
+
     private Topic topic;
-    private int rating;
 
-
-    public DateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(DateTime creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public DateTime getModificationDate() {
-        return modificationDate;
-    }
-
-    public void setModificationDate(DateTime modificationDate) {
-        this.modificationDate = modificationDate;
-    }
-
-    public User getUserCreated() {
-        return userCreated;
-    }
-
-    public void setUserCreated(User userCreated) {
-        this.userCreated = userCreated;
-    }
-
+    /**
+     * @return post text content
+     */
     public String getPostContent() {
         return postContent;
     }
 
+    /**
+     * @param postContent post text content
+     */
     public void setPostContent(String postContent) {
         this.postContent = postContent;
     }
 
+    /**
+     * @return post creation date
+     */
+    public DateTime getCreationDate() {
+        return creationDate;
+    }
+
+    /**
+     * @param creationDate, date when post is created
+     */
+    public void setCreationDate(DateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    /**
+     * @return post modification date
+     */
+    public DateTime getModificationDate() {
+        return modificationDate;
+    }
+
+    /**
+     * @param modificationDate, date when post is modified
+     */
+    public void setModificationDate(DateTime modificationDate) {
+        this.modificationDate = modificationDate;
+    }
+
+    /**
+     * @return user that created post
+     */
+    public User getUserCreated() {
+        return userCreated;
+    }
+
+    /**
+     * @param userCreated user that created post
+     */
+    public void setUserCreated(User userCreated) {
+        this.userCreated = userCreated;
+    }
+
+    /**
+     * @return topic to which this post belongs
+     */
     public Topic getTopic() {
         return topic;
     }
 
+    /**
+     * @param topic topic to which this post belongs
+     */
     public void setTopic(Topic topic) {
         this.topic = topic;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 }
