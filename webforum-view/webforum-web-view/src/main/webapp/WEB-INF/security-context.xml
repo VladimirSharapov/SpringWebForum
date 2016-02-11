@@ -19,6 +19,7 @@
                              password-parameter="password"
                              authentication-success-handler-ref="successAuthHandler"
                              authentication-failure-handler-ref="failureAuthHandler"/>
+        <security:remember-me data-source-ref="dataSource"/>
     </security:http>
 
 
