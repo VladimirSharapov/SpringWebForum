@@ -1,23 +1,33 @@
 package org.shv.webforum.model.entity;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.shv.webforum.common.BaseEntity;
+
+import javax.persistence.*;
 
 /**
  * Stores information about post that user makes
  *
  * @author Vladimir Sharapov
  */
+@Entity
 public class Post extends BaseEntity {
 
     private String postContent;
 
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime creationDate;
 
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime modificationDate;
 
+    @ManyToOne
+    @JoinColumn(name="USER")
     private User userCreated;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="TOPIC")
     private Topic topic;
 
     /**

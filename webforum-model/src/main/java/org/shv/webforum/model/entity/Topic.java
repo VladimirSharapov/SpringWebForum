@@ -1,8 +1,11 @@
 package org.shv.webforum.model.entity;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 import org.shv.webforum.common.BaseEntity;
 import org.shv.webforum.model.validation.annotation.NotBlankSized;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,7 @@ import java.util.List;
  *
  * @author Vladimir Sharapov
  */
+@Entity
 public class Topic extends BaseEntity {
 
     public static final int MIN_NAME_SIZE = 1;
@@ -20,10 +24,18 @@ public class Topic extends BaseEntity {
     @NotBlankSized(min = MIN_NAME_SIZE, max = MAX_NAME_SIZE, message = "{javax.validation.constraints.Size.message}")
     private String title;
 
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime creationDate;
+
+    @ManyToOne
+    @JoinColumn(name="USER")
     private User topicStarter;
 
+    @ManyToOne
+    @JoinColumn(name="BRANCH")
     private Branch branch;
 
+    @OneToMany(mappedBy="topic")
     private List<Post> posts = new ArrayList<>();
 
 
@@ -41,6 +53,19 @@ public class Topic extends BaseEntity {
         this.title = title;
     }
 
+    /**
+     * @return topic creation date
+     */
+    public DateTime getCreationDate() {
+        return creationDate;
+    }
+
+    /**
+     * @param creationDate topic creation date
+     */
+    public void setCreationDate(DateTime creationDate) {
+        this.creationDate = creationDate;
+    }
 
     /**
      * Get the user who created the topic.
@@ -73,6 +98,14 @@ public class Topic extends BaseEntity {
     public void setBranch(Branch branch) {
         this.branch = branch;
     }
+
+    /**
+     * @return list of posts inside current topic
+     */
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
 
     /**
      * @return list of posts inside current topic

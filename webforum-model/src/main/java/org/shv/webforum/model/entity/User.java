@@ -1,11 +1,13 @@
 package org.shv.webforum.model.entity;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.shv.webforum.common.BaseEntity;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -13,6 +15,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Vladimir Sharapov
  */
+@Entity
 public class User extends BaseEntity {
 
     private static final String USER_EMAIL_ILLEGAL_FORMAT = "{validation.invalid_email_format}";
@@ -52,6 +55,7 @@ public class User extends BaseEntity {
     @Length(max = EMAIL_MAX_LENGTH, message = EMAIL_ILLEGAL_LENGTH)
     private String email;
 
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime registrationDate;
 
     private long postCount;

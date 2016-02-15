@@ -1,22 +1,38 @@
 package org.shv.webforum.model.entity;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.shv.webforum.common.BaseEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.Transient;
+
 
 /**
  * Forum branch that contains topics and belongs to section {@link org.shv.webforum.model.entity.Section}
  *
  * @author Vladimir Sharapov
  */
+
+@NamedQueries({
+       // @NamedQuery(name = "postCountQuery", query = "select count(p)  from Topic t left join t.posts p where t.branch = :branch"),
+        @NamedQuery(name = "postCountQuery", query = "SELECT COUNT(post) FROM Post post WHERE post.topic.branch = :branch"),
+
+        @NamedQuery(name = "topicCountQuery", query = "select count(t) from Topic t where t.branch = :branch")
+})
+@Entity
 public class Branch extends BaseEntity {
 
     private static final String BRANCH_DESCRIPTION_ILLEGAL_LENGTH = "{branch.description.length_constraint_violation}";
     private static final String BRANCH_CANT_BE_VOID = "{branch.name.emptiness_constraint_violation}";
     private static final String BRANCH_NAME_ILLEGAL_LENGTH = "{branch.name.length_constraint_violation}";
 
-    public  static final int BRANCH_NAME_MAX_LENGTH = 80;
-    public  static final int BRANCH_DESCRIPTION_MAX_LENGTH = 255;
+    public static final int BRANCH_NAME_MAX_LENGTH = 80;
+    public static final int BRANCH_DESCRIPTION_MAX_LENGTH = 255;
 
     @NotBlank(message = BRANCH_CANT_BE_VOID)
     @Length(max = BRANCH_NAME_MAX_LENGTH, message = BRANCH_NAME_ILLEGAL_LENGTH)
@@ -25,13 +41,19 @@ public class Branch extends BaseEntity {
     @Length(max = BRANCH_DESCRIPTION_MAX_LENGTH, message = BRANCH_DESCRIPTION_ILLEGAL_LENGTH)
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "SECTION")
     private Section section;
 
+    @ManyToOne
+    @JoinColumn(name = "LASTPOST")
     private Post lastPost;
 
-    private Integer topicsCount;
+    @Transient
+    private int topicsCount;
 
-    private Integer postsCount;
+    @Transient
+    private int postsCount;
 
 
     /**
@@ -43,7 +65,7 @@ public class Branch extends BaseEntity {
     /**
      * Create branch with name and description
      *
-     * @param name - name for new branch
+     * @param name        - name for new branch
      * @param description - description for new Branch
      */
     public Branch(String name, String description) {
@@ -54,7 +76,7 @@ public class Branch extends BaseEntity {
     /**
      * Get branch name which briefly describes the topics contained in it.
      *
-     * @return  branch name
+     * @return branch name
      */
     public String getName() {
         return name;
@@ -123,7 +145,7 @@ public class Branch extends BaseEntity {
     /**
      * @return number of topic in this branch
      */
-    public Integer getTopicsCount() {
+    public int getTopicsCount() {
         return topicsCount;
     }
 
@@ -132,7 +154,7 @@ public class Branch extends BaseEntity {
      *
      * @param topicsCount number of topics
      */
-    public void setTopicsCount(Integer topicsCount) {
+    public void setTopicsCount(int topicsCount) {
         this.topicsCount = topicsCount;
     }
 
@@ -142,7 +164,7 @@ public class Branch extends BaseEntity {
      *
      * @return number of posts in this branch
      */
-    public Integer getPostsCount() {
+    public int getPostsCount() {
         return postsCount;
     }
 
@@ -151,11 +173,12 @@ public class Branch extends BaseEntity {
      *
      * @param postsCount number of posts in this branch
      */
-    public void setPostsCount(Integer postsCount) {
+    public void setPostsCount(int postsCount) {
         this.postsCount = postsCount;
     }
 
     @Override
     public String toString() {
         return "Branch [id=" + getId() + ", name=" + name + ", description=" + description + "]";
-    }}
+    }
+}

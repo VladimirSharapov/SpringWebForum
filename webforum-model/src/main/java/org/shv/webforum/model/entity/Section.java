@@ -8,11 +8,17 @@ import java.util.List;
 
 import org.shv.webforum.common.BaseEntity;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
 /**
  * Forum section that contains branches
  *
  * @author Vladimir Sharapov
  */
+@Entity
 public class Section extends BaseEntity {
 
     private static final String SECTION_DESCRIPTION_ILLEGAL_LENGTH = "{section.description.length_constraint_violation}";
@@ -31,6 +37,7 @@ public class Section extends BaseEntity {
 
     private Integer position;
 
+    @OneToMany(mappedBy = "section", fetch = FetchType.EAGER)
     private List<Branch> branches = new ArrayList<>();
 
     /**
@@ -161,7 +168,7 @@ public class Section extends BaseEntity {
 
     @Override
     public String toString() {
-        return "PoulpeSection [id=" + getId() + ", name=" + name + ", description=" + description + "]";
+        return "Section [id=" + getId() + ", name=" + name + ", description=" + description + "]";
     }
 
 
