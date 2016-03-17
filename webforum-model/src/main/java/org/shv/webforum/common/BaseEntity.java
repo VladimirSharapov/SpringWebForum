@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+
 /**
  * Base class for all entities in the project
  *
@@ -16,9 +17,9 @@ import javax.persistence.MappedSuperclass;
 public abstract class BaseEntity {
 
     @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @GeneratedValue(strategy=GenerationType.IDENTITY, generator="IdOrGenerated")
-    @GenericGenerator(name="IdOrGenerated", strategy="org.shv.webforum.common.UseIdOrGenerate")
+ //   @GeneratedValue(strategy=GenerationType.IDENTITY, generator="IdOrGenerated")
+ //   @GenericGenerator(name="IdOrGenerated", strategy="org.shv.webforum.common.UseIdOrGenerate")
+    @GeneratedValue(generator = "ID_GENERATOR")
     private Long id;
 
     /**
@@ -56,14 +57,17 @@ public abstract class BaseEntity {
         if (this == obj) {
             return true;
         }
+
         if (obj == null) {
             return false;
         }
+
         if ( !(getClass().isInstance(obj)) ) {
             return false;
         }
+
         BaseEntity other = (BaseEntity) obj;
-        return id == other.id;
+        return id.equals(other.id);
     }
 
     /**
@@ -72,5 +76,9 @@ public abstract class BaseEntity {
     @Override
     public int hashCode() {
         return (id != null) ? id.hashCode() : -1;
+    }
+
+    public String toString() {
+        return id.toString();
     }
 }
