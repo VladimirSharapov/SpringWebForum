@@ -2,10 +2,11 @@ package org.shv.webforum.common;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 
 /**
- * Basic class for access to the specified {@link BaseEntity} objects.
+ * Base class for access to the specified {@link org.shv.webforum.common.BaseEntity} objects.
  * Uses to load objects from database, save, update or delete them.
  * The implementation is based on the Hibernate.
  *
@@ -25,6 +26,7 @@ public class GenericDao<T extends BaseEntity> implements Crud<T> {
 
     /**
      * @param sessionFactory The SessionFactory.
+     * @param type entity class
      */
     public GenericDao(SessionFactory sessionFactory, Class<T> type) {
         this.sessionFactory = sessionFactory;
@@ -40,15 +42,14 @@ public class GenericDao<T extends BaseEntity> implements Crud<T> {
         return sessionFactory.getCurrentSession();
     }
 
-
     /**
      * Save or update entity.
-     * <p/>
+     * <p>
      * This operation cascades to associated instances if the association
      * is mapped with cascade="save-update".
      * This operation will result in INSERT SQL statement (for saving new entity),
      * or in UPDATE statement for updating existing entity.
-     *
+     * </p>
      * @param entity object to save
      */
     @Override
@@ -70,7 +71,6 @@ public class GenericDao<T extends BaseEntity> implements Crud<T> {
      * <p>This method deletes all cascaded references.</p>
      *
      * @param entity Entity to be deleted.
-     * @throws {@link org.hibernate.StaleStateException} Throws exception if entity does not exist.
      */
     @Override
     public void delete(T entity) {
@@ -104,5 +104,13 @@ public class GenericDao<T extends BaseEntity> implements Crud<T> {
     @Override
     public void flush() {
         session().flush();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<T> getType() {
+        return type;
     }
 }
