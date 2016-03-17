@@ -1,6 +1,5 @@
 package org.shv.webforum.common;
 
-import org.shv.webforum.common.BaseEntity;
 
 /**
  * Interface describing basic database access operations for domain objects.
@@ -17,7 +16,6 @@ public interface Crud<T extends BaseEntity> {
      * @param entity object to save
      */
     void saveOrUpdate(T entity);
-
 
     /**
      * <p>Delete the entity by id.</p>
@@ -56,4 +54,11 @@ public interface Crud<T extends BaseEntity> {
      * Make all changes flush to database.
      */
     void flush();
+
+    /**
+     * Get class object of domain object
+     *
+     * @return class object of domain object
+     */
+    Class<T> getType();
 }
