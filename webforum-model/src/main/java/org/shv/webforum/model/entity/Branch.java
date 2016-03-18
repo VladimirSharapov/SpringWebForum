@@ -1,15 +1,18 @@
 package org.shv.webforum.model.entity;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.shv.webforum.common.BaseEntity;
+
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.shv.webforum.common.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 
 /**
@@ -17,13 +20,6 @@ import javax.persistence.Transient;
  *
  * @author Vladimir Sharapov
  */
-
-@NamedQueries({
-       // @NamedQuery(name = "postCountQuery", query = "select count(p)  from Topic t left join t.posts p where t.branch = :branch"),
-        @NamedQuery(name = "postCountQuery", query = "SELECT COUNT(post) FROM Post post WHERE post.topic.branch = :branch"),
-
-        @NamedQuery(name = "topicCountQuery", query = "select count(t) from Topic t where t.branch = :branch")
-})
 @Entity
 public class Branch extends BaseEntity {
 
@@ -35,10 +31,10 @@ public class Branch extends BaseEntity {
     public static final int BRANCH_DESCRIPTION_MAX_LENGTH = 255;
 
     @NotBlank(message = BRANCH_CANT_BE_VOID)
-    @Length(max = BRANCH_NAME_MAX_LENGTH, message = BRANCH_NAME_ILLEGAL_LENGTH)
+    @Size(max = BRANCH_NAME_MAX_LENGTH, message = BRANCH_NAME_ILLEGAL_LENGTH)
     private String name;
 
-    @Length(max = BRANCH_DESCRIPTION_MAX_LENGTH, message = BRANCH_DESCRIPTION_ILLEGAL_LENGTH)
+    @Size(max = BRANCH_DESCRIPTION_MAX_LENGTH, message = BRANCH_DESCRIPTION_ILLEGAL_LENGTH)
     private String description;
 
     @ManyToOne
@@ -54,7 +50,6 @@ public class Branch extends BaseEntity {
 
     @Transient
     private int postsCount;
-
 
     /**
      * Default constructor, protected for using only by hibernate
@@ -180,5 +175,26 @@ public class Branch extends BaseEntity {
     @Override
     public String toString() {
         return "Branch [id=" + getId() + ", name=" + name + ", description=" + description + "]";
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == null) { return false; }
+        if (obj == this) { return true; }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
+
+        Branch rhs = (Branch) obj;
+        return new EqualsBuilder()
+                .append(name, rhs.name)
+                .append(description, rhs.description)
+                .isEquals();
+    }
+
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(name)
+                .append(description)
+                .toHashCode();
     }
 }
