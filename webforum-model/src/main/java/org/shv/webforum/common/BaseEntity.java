@@ -1,9 +1,21 @@
+/**
+ * This project is a simple web forum. I created it just to
+ * demonstrate my programming skills to potential employers.
+ *
+ * Here is short description: ( for more detailed description please reade README.md or
+ * go to https://github.com/VladimirSharapov/SpringWebForum )
+ *
+ * Front-end: jsp, bootstrap, jquery
+ * Back-end: Spring, Hibernate
+ * DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+ *     Though it must be a relational DB.
+ * Tools: git,maven,jenkins,nexus,liquibase.
+ *
+ * My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+ */
 package org.shv.webforum.common;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -16,9 +28,13 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class BaseEntity {
 
+    /**
+     *  We use enhanced-sequence strategy for id generation because this is
+     *  database independent id generation strategy. This strategy can be used as for
+     *  DB which support sequences, as for DB which do not support sequences.
+     *  Generator is defined in org.shv.webforum.common.package-info.java
+     */
     @Id
- //   @GeneratedValue(strategy=GenerationType.IDENTITY, generator="IdOrGenerated")
- //   @GenericGenerator(name="IdOrGenerated", strategy="org.shv.webforum.common.UseIdOrGenerate")
     @GeneratedValue(generator = "ID_GENERATOR")
     private Long id;
 
