@@ -1,3 +1,18 @@
+/**
+ * This project is a simple web forum. I created it just to
+ * demonstrate my programming skills to potential employers.
+ *
+ * Here is short description: ( for more detailed description please reade README.md or
+ * go to https://github.com/VladimirSharapov/SpringWebForum )
+ *
+ * Front-end: jsp, bootstrap, jquery
+ * Back-end: Spring, Hibernate
+ * DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+ *     Though it must be a relational DB.
+ * Tools: git,maven,jenkins,nexus,liquibase.
+ *
+ * My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+ */
 package org.shv.webforum.model.entity;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -23,12 +38,12 @@ import javax.validation.groups.Default;
  * @author Vladimir Sharapov
  */
 @NamedQueries({
-        @NamedQuery(name= "postsInTopic",       query="select p from Post p where p.topic = :topic order by p.id"),
+        @NamedQuery(name= "postsInTopic",       query="select p from Post p join fetch p.userCreated where p.topic = :topic order by p.id"),
         @NamedQuery(name= "lastPosts",          query="select p from Post p join fetch  p.userCreated join p.topic t " +
                                                       "where p.id in ( select max(p1.id) from Post p1 group by p1.topic ) " +
                                                       "and p.topic in :topicList"),
-        @NamedQuery(name = "postsInBranch",     query = "SELECT post FROM Post post WHERE post.topic.branch = :branch"),
-        @NamedQuery(name = "postCountInBranch", query = "SELECT COUNT(post) FROM Post post WHERE post.topic.branch = :branch")
+        @NamedQuery(name = "postsInBranch",     query = "select p from Post p join fetch p.topic join fetch p.userCreated where p.topic.branch = :branch"),
+        @NamedQuery(name = "postCountInBranch", query = "select COUNT(p) from Post p where p.topic.branch = :branch")
 })
 @Entity
 public class Post extends BaseEntity {
@@ -46,10 +61,13 @@ public class Post extends BaseEntity {
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime modificationDate;
 
+    // we want to keep it eager because while lazy loading posts for topic we also want user to be loaded with post in
+    // one trip to database
     @ManyToOne
     @JoinColumn(name="USER")
     private User userCreated;
 
+    // we don't want to fetch topic in postsInTopic query
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="TOPIC")
     private Topic topic;
