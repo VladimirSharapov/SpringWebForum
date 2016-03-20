@@ -1,23 +1,48 @@
+/**
+ * This project is a simple web forum. I created it just to
+ * demonstrate my programming skills to potential employers.
+ *
+ * Here is short description: ( for more detailed description please reade README.md or
+ * go to https://github.com/VladimirSharapov/SpringWebForum )
+ *
+ * Front-end: jsp, bootstrap, jquery
+ * Back-end: Spring, Hibernate
+ * DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+ *     Though it must be a relational DB.
+ * Tools: git,maven,jenkins,nexus,liquibase.
+ *
+ * My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+ */
 package org.shv.webforum.model.entity;
 
-import org.hibernate.validator.constraints.Length;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.shv.webforum.common.BaseEntity;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.shv.webforum.common.BaseEntity;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 /**
  * Forum section that contains branches
  *
  * @author Vladimir Sharapov
  */
+@NamedQueries(
+        @NamedQuery(
+                // we want to fetch all the data needed to display start page of forum at once,
+                // that means using just one trip to database
+                name="allSections", query="select s from Section s " +
+                                          "join fetch s.branches b " +
+                                          "left join fetch b.lastPost lp " +
+                                          "left join fetch lp.userCreated order by s.position"
+        )
+)
 @Entity
 public class Section extends BaseEntity {
 
@@ -29,15 +54,16 @@ public class Section extends BaseEntity {
     public static final int SECTION_DESCRIPTION_MAX_LENGTH = 255;
 
     @NotBlank(message = SECTION_CANT_BE_VOID)
-    @Length(max = SECTION_NAME_MAX_LENGTH, message = SECTION_NAME_ILLEGAL_LENGTH)
+    @Size(max = SECTION_NAME_MAX_LENGTH, message = SECTION_NAME_ILLEGAL_LENGTH)
     private String name;
 
-    @Length(max = SECTION_DESCRIPTION_MAX_LENGTH, message = SECTION_DESCRIPTION_ILLEGAL_LENGTH)
+    @Size(max = SECTION_DESCRIPTION_MAX_LENGTH, message = SECTION_DESCRIPTION_ILLEGAL_LENGTH)
     private String description;
 
     private Integer position;
 
-    @OneToMany(mappedBy = "section", fetch = FetchType.EAGER)
+    @OrderBy("ID ASC")
+    @OneToMany(mappedBy = "section")
     private List<Branch> branches = new ArrayList<>();
 
     /**
@@ -146,9 +172,9 @@ public class Section extends BaseEntity {
      */
     public void addOrUpdateBranch(Branch branch) {
         for (int index = 0; index < branches.size(); index++) {
-            long id = branches.get(index).getId();
+            Long id = branches.get(index).getId();
 
-            if (id != 0 && id == branch.getId()) {
+            if (id != null && id == branch.getId()) {
                 branches.set(index, branch);
                 return;
             }
@@ -171,5 +197,24 @@ public class Section extends BaseEntity {
         return "Section [id=" + getId() + ", name=" + name + ", description=" + description + "]";
     }
 
+    public boolean equals(Object obj) {
+        if (obj == null) { return false; }
+        if (obj == this) { return true; }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
 
+        Section rhs = (Section) obj;
+        return new EqualsBuilder()
+                .append(position, rhs.position)
+                .append(name,rhs.name)
+                .isEquals();
+    }
+
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(position)
+                .append(name)
+                .toHashCode();
+    }
 }
