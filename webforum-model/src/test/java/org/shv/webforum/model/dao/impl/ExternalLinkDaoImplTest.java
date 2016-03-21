@@ -1,193 +1,90 @@
+/**
+ * This project is a simple web forum. I created it just to
+ * demonstrate my programming skills to potential employers.
+ *
+ * Here is short description: ( for more detailed description please reade README.md or
+ * go to https://github.com/VladimirSharapov/SpringWebForum )
+ *
+ * Front-end: jsp, bootstrap, jquery
+ * Back-end: Spring, Hibernate
+ * DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+ *     Though it must be a relational DB.
+ * Tools: git,maven,jenkins,nexus,liquibase.
+ *
+ * My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+ */
 package org.shv.webforum.model.dao.impl;
 
-import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang.StringEscapeUtils;
-import org.hibernate.SessionFactory;
-import org.hibernate.Session;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
-
-
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
-
+import org.shv.webforum.common.Crud;
+import org.shv.webforum.model.util.PersistedObjectsFactory;
 import org.shv.webforum.model.dao.ExternalLinkDao;
 import org.shv.webforum.model.entity.ExternalLink;
-import org.shv.webforum.model.util.EntityFactory;
 
-import javax.validation.ConstraintViolationException;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
+import static org.apache.commons.lang.RandomStringUtils.random;
+import static org.junit.Assert.assertEquals;
+import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
+import static org.shv.webforum.model.entity.ExternalLink.*;
+
 
 /**
  *
  * @author Vladimir Sharapov
  */
+public class ExternalLinkDaoImplTest extends BaseDaoImplTest<ExternalLink> {
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/applicationContext-dao.xml")
-@Transactional
-public class ExternalLinkDaoImplTest {
-    @Autowired
-    private SessionFactory sessionFactory;
+    private static final int EXTERNAL_LINK_SIZE = 3;
     @Autowired
     private ExternalLinkDao dao;
 
-    private Session session;
+    @Override
+    protected Crud getDao() {
+        return dao;
+    }
 
-    @Before
-    public void setUp() throws Exception {
-        session = sessionFactory.getCurrentSession();
+    @Override
+    protected void changeEntity(ExternalLink externalLink) {
+         externalLink.setTitle(random(TITLE_MAX_SIZE));
     }
 
     @Test
-    public void testSave() throws Exception {
-        long id = 1L;
-        ExternalLink expected = EntityFactory.getDefaultExternalLink();
-        expected.setId(id);
-        session.save(expected);
-        session.flush();
-        session.clear();
+    public void testGetAllLinks() throws Exception {
+        List<ExternalLink> linkList = PersistedObjectsFactory.createExternalLinkList(EXTERNAL_LINK_SIZE);
 
-        ExternalLink actual = (ExternalLink) session.get(ExternalLink.class, expected.getId());
-        assertReflectionEquals(expected, actual);
-    }
+        List<ExternalLink> actualLinkList = dao.getAll();
 
-    @Test
-    public void testGetMissingId() {
-        assertNull(dao.get(Long.MAX_VALUE));
-    }
-
-    @Test
-    public void testUpdate() throws Exception {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        dao.saveOrUpdate(link);
-        session.flush();
-        session.clear();
-
-        link = (ExternalLink) session.get(ExternalLink.class, link.getId());
-        fillFieldsRandomly(link);
-
-        dao.saveOrUpdate(link);
-        session.flush();
-        session.clear();
-
-        ExternalLink actual = (ExternalLink) session.get(ExternalLink.class, link.getId());
-        assertReflectionEquals(link, actual);
-    }
-
-    @Test
-    public void testGetLinks() throws Exception {
-        List<ExternalLink> link = EntityFactory.getExternalLinks(3);
-        for (ExternalLink externalLink : link) {
-            session.saveOrUpdate(externalLink);
+        assertEquals(actualLinkList.size(), EXTERNAL_LINK_SIZE);
+        for(int i=0; i< actualLinkList.size(); i++) {
+            assertReflectionEquals(linkList.get(i), actualLinkList.get(i));
         }
-        session.clear();
-
-        List<ExternalLink> actual = dao.getAll();
-        for(int i=0; i< actual.size(); i++) {
-            assertReflectionEquals(link.get(i), actual.get(i));
-        }
-        assertEquals(actual.size(), 3);
     }
 
-    @Test(expected = ConstraintViolationException.class)
-    public void shouldFailWithEmptyTitle() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        link.setTitle("");
-        dao.saveOrUpdate(link);
-    }
+//    @Test
+//    public void testDIE() {
+//    //    ExternalLink link = EntityFactory.getDefaultExternalLink();
+//        link.setTitle(null);
+//        dao.saveOrUpdate(link);
+//        session().flush();
+//    }
 
-    @Test(expected = ConstraintViolationException.class)
-    public void shouldFailWithNullTitle() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        link.setTitle(null);
-        dao.saveOrUpdate(link);
-    }
+    //create domain objects to test constraint violation
+    @Override
+    protected void fillParameters() {
+        entity().setUrl(null);            // null url
+        entity().setUrl("://wf.org");     // not valid url
+        entity().setUrl(HTTP_SCHEME + random(URL_MAX_SIZE - HTTP_SCHEME.length() + 1)); // too long url
 
+        entity().setTitle(random(TITLE_MIN_SIZE-1));         // too short title
+        entity().setTitle(random(TITLE_MAX_SIZE + 1));       // too long title
+        entity().setTitle("");                               // empty title
+        entity().setTitle(null);                             // null title
 
-    @Test(expected = ConstraintViolationException.class)
-    public void shouldFailWithLongTitle() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        link.setTitle(RandomStringUtils.random(ExternalLink.TITLE_MAX_SIZE + 1, true, false));
-        dao.saveOrUpdate(link);
-    }
-
-    @Test
-    public void shouldSuccessWithMaxLengthTitle() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        link.setTitle(RandomStringUtils.random(ExternalLink.TITLE_MAX_SIZE, true, false));
-        dao.saveOrUpdate(link);
-    }
-
-    @Test
-    public void shouldSuccessWithMinLengthTitle() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        link.setTitle(RandomStringUtils.random(ExternalLink.TITLE_MIN_SIZE, true, false));
-        dao.saveOrUpdate(link);
-    }
-
-    @Test(expected = ConstraintViolationException.class)
-    public void shouldFailWithNullUrl() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        link.setUrl(null);
-        dao.saveOrUpdate(link);
-    }
-
-    @Test(expected = ConstraintViolationException.class)
-    public void shouldFailWithNotValidUrl() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        link.setUrl("://wf.org");
-        dao.saveOrUpdate(link);
-    }
-
-    @Test(expected = ConstraintViolationException.class)
-    public void shouldFailWithLongUrl() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        //-10 = protocol + domen
-        link.setUrl("http://" + RandomStringUtils.random(ExternalLink.URL_MAX_SIZE - 10, true, false) + ".org");
-        session.saveOrUpdate(link);
-    }
-
-    @Test
-    public void shouldSuccessWithMaxLengthUrl() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        //-10 = protocol + domen
-        link.setUrl("http://" + RandomStringUtils.random(ExternalLink.URL_MAX_SIZE - 11, true, false) + ".org");
-        dao.saveOrUpdate(link);
-    }
-
-    @Test(expected = ConstraintViolationException.class)
-    public void nullHintForExternalLinkShouldRaiseConstraintException() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        link.setHint(null);
-        dao.saveOrUpdate(link);
-    }
-
-    @Test
-    public void shouldSuccessWithMaxLengthHint() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        link.setHint(RandomStringUtils.random(ExternalLink.HINT_MAX_SIZE, true, false));
-        dao.saveOrUpdate(link);
-    }
-
-    @Test(expected = ConstraintViolationException.class)
-    public void shouldFailWithLongHint() {
-        ExternalLink link = EntityFactory.getDefaultExternalLink();
-        link.setHint(RandomStringUtils.random(ExternalLink.HINT_MAX_SIZE + 1, true, false));
-        dao.saveOrUpdate(link);
-    }
-
-    private void fillFieldsRandomly(ExternalLink link) {
-        link.setTitle("New title");
-        link.setUrl(StringEscapeUtils.escapeJava("http://wf.org"));
-        link.setHint("New hint");
+        entity().setHint(random(ExternalLink.HINT_MIN_SIZE - 1));  // too short hint
+        entity().setHint(random(ExternalLink.HINT_MAX_SIZE + 1));  // too long hint
+        entity().setHint(null);                                    // null hint
     }
 }
