@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This project is a simple web forum. I created it just to
+    demonstrate my programming skills to potential employers.
+
+    Here is short description: ( for more detailed description please reade README.md or
+    go to https://github.com/VladimirSharapov/SpringWebForum )
+
+    Front-end: jsp, bootstrap, jquery
+    Back-end: Spring, Hibernate
+    DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+        Though it must be a relational DB.
+    Tools: git,maven,jenkins,nexus,liquibase.
+
+    My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+
+-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
@@ -9,8 +26,21 @@
         <constructor-arg name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean id="userDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.UserDaoImpl"/>
+
     <bean id="externalLinkDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.ExternalLinkDaoImpl"/>
 
+    <bean id="postDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.PostDaoImpl"/>
+
+    <bean id="topicDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.TopicDaoImpl"/>
+
+    <bean id="branchDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.BranchDaoImpl"/>
+
+    <bean id="sectionDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.SectionDaoImpl"/>
+
+    <bean id="forumStatisticsDao"  class="org.shv.webforum.model.dao.impl.ForumStatisticsDaoImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
 
     <!--underlying data source is wrapped with lazy one, so that connection is not retrieved from the pool unless-->
     <!--it's really necessary. E.g. if Hibernate hits only cache, there is no need to fetch connection, but without lazy-->
@@ -49,6 +79,7 @@
                 <value>org.shv.webforum.model.entity</value>
             </list>
         </property>
+
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.query.factory_class">
