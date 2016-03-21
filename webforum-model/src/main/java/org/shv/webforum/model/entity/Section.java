@@ -37,7 +37,7 @@ import javax.validation.constraints.Size;
         @NamedQuery(
                 // we want to fetch all the data needed to display start page of forum at once,
                 // that means using just one trip to database
-                name="allSections", query="select s from Section s " +
+                name="allSections", query="select distinct s from Section s " +
                                           "join fetch s.branches b " +
                                           "left join fetch b.lastPost lp " +
                                           "left join fetch lp.userCreated order by s.position"
