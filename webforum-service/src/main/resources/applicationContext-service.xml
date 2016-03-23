@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This project is a simple web forum. I created it just to
+    demonstrate my programming skills to potential employers.
+
+    Here is short description: ( for more detailed description please reade README.md or
+    go to https://github.com/VladimirSharapov/SpringWebForum )
+
+    Front-end: jsp, bootstrap, jquery
+    Back-end: Spring, Hibernate
+    DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+        Though it must be a relational DB.
+    Tools: git,maven,jenkins,nexus,liquibase.
+
+    My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+
+-->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -22,8 +39,59 @@
         </tx:attributes>
     </tx:advice>
 
+    <bean id="userDetailsService" class="org.shv.webforum.service.transactional.SecurityServiceImpl">
+        <constructor-arg ref="userDao"/>
+    </bean>
+
+    <bean id="userService" class="org.shv.webforum.service.transactional.UserServiceImpl">
+        <constructor-arg ref="userDao"/>
+    </bean>
+
+    <bean id="postService" class="org.shv.webforum.service.transactional.PostServiceImpl">
+        <constructor-arg ref="postDao"/>
+        <constructor-arg ref="userService"/>
+    </bean>
 
     <bean id="externalLinkService" class="org.shv.webforum.service.transactional.ExternalLinkServiceImpl">
         <constructor-arg ref="externalLinkDao"/>
     </bean>
+
+    <bean id="topicService" class="org.shv.webforum.service.transactional.TopicServiceImpl">
+        <constructor-arg ref="topicDao"/>
+        <constructor-arg ref="postDao"/>
+        <constructor-arg ref="userService"/>
+    </bean>
+
+    <bean id="branchService" class="org.shv.webforum.service.transactional.BranchServiceImpl">
+        <constructor-arg ref="branchDao"/>
+        <constructor-arg ref="topicDao"/>
+        <constructor-arg ref="postDao"/>
+    </bean>
+
+    <bean id="sectionService" class="org.shv.webforum.service.transactional.SectionServiceImpl">
+        <constructor-arg ref="sectionDao"/>
+        <constructor-arg ref="branchService"/>
+    </bean>
+
+    <bean id="forumStatisticsService" class="org.shv.webforum.service.transactional.ForumStatisticsService">
+        <constructor-arg ref="forumStatisticsDao"/>
+    </bean>
+
+    <!--JMX configuration-->
+    <bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+        <property name="locateExistingServerIfPossible" value="true"/>
+    </bean>
+
+    <bean id="jmxExporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+        <property name="beans">
+            <map>
+                <entry key="webforum:name=logging">
+                    <bean class="org.shv.webforum.service.jmx.Log4jConfigurator"/>
+                </entry>
+            </map>
+        </property>
+        <!-- Ignores newly created configuration -->
+        <!-- property name="registrationPolicy" value="IGNORE_EXISTING"/ -->
+    </bean>
+
 </beans>
