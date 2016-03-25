@@ -1,8 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This project is a simple web forum. I created it just to
+    demonstrate my programming skills to potential employers.
+
+    Here is short description: ( for more detailed description please reade README.md or
+    go to https://github.com/VladimirSharapov/SpringWebForum )
+
+    Front-end: jsp, bootstrap, jquery
+    Back-end: Spring, Hibernate
+    DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+        Though it must be a relational DB.
+    Tools: git,maven,jenkins,nexus,liquibase.
+
+    My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+
+-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
+       <bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl"/>
 
+       <bean name="forumStatisticsProvider" class="org.shv.webforum.controller.util.ForumStatisticsProvider">
+              <constructor-arg index="0" ref="sessionRegistry"/>
+              <constructor-arg index="1" ref="forumStatisticsService"/>
+       </bean>
+
+       <bean id="loggingConfigurationFilter" class="org.shv.webforum.controller.filters.LoggingConfigurationFilter">
+              <constructor-arg ref="userDetailsService"/>
+       </bean>
 </beans>
