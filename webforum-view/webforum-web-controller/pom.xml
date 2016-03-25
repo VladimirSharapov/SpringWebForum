@@ -11,6 +11,7 @@
 
     <artifactId>webforum-web-controller</artifactId>
     <name>${project.artifactId}</name>
+    <description>This modules contains controllers</description>
 
     <dependencies>
 
@@ -72,6 +73,12 @@
             <version>2.5.3</version>
         </dependency>
 
+        <!-- RSS -->
+        <dependency>
+            <groupId>com.rometools</groupId>
+            <artifactId>rome</artifactId>
+        </dependency>
+
 
         <!-- project modules -->
         <dependency>
@@ -82,7 +89,10 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>webforum-service</artifactId>
         </dependency>
-
-
     </dependencies>
+
+    <properties>
+        <rootDir>${basedir}\..\..</rootDir>
+    </properties>
+
 </project>

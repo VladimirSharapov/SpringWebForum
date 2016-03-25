@@ -11,6 +11,8 @@
 
     <artifactId>webforum-web-view</artifactId>
     <name>${project.artifactId}</name>
+    <description>This module contains jsp pages and all related artifacts like css,js, etc </description>
+
     <packaging>war</packaging>
 
 
@@ -27,6 +29,11 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jsp-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time-jsptags</artifactId>
         </dependency>
 
         <!-- Sitemesh -->
@@ -71,5 +78,9 @@
     <build>
         <finalName>spring-webforum</finalName>
     </build>
+
+    <properties>
+        <rootDir>${basedir}\..\..</rootDir>
+    </properties>
 
 </project>
