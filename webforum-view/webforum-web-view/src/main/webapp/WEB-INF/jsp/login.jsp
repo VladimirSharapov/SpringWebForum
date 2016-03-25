@@ -1,3 +1,20 @@
+<%--
+
+    This project is a simple web forum. I created it just to
+    demonstrate my programming skills to potential employers.
+
+    Here is short description: ( for more detailed description please reade README.md or
+    go to https://github.com/VladimirSharapov/SpringWebForum )
+
+    Front-end: jsp, bootstrap, jquery
+    Back-end: Spring, Hibernate
+    DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+        Though it must be a relational DB.
+    Tools: git,maven,jenkins,nexus,liquibase.
+
+    My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -6,7 +23,6 @@
 <html>
 <head>
   <title>
-      <c:out value="${cmpTitlePrefix}"/>
       <spring:message code="label.signin"/>
   </title>
 </head>
@@ -58,11 +74,11 @@
             <label class="rememberme-lbl"><input type="checkbox" name="_spring_security_remember_me" class="form-check-radio-box" checked="checked"><spring:message code="label.auto_logon"/></label>
         </div>
 
-        <div>
+        <%-- div>
             <a id="page-signup-link" href="${pageContext.request.contextPath}/user/new"><spring:message
                     code="label.signup.rightnow"/></a>
             <br/>
-        </div>
+        </div --%>
 
       <div class="form-actions">
         <input type="submit" id="page-signin-submit-button" class="btn btn-primary" value="<spring:message code="label.signin"/>"/>
