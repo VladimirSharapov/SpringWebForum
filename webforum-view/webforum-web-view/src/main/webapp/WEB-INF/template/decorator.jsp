@@ -1,3 +1,20 @@
+<%--
+
+    This project is a simple web forum. I created it just to
+    demonstrate my programming skills to potential employers.
+
+    Here is short description: ( for more detailed description please reade README.md or
+    go to https://github.com/VladimirSharapov/SpringWebForum )
+
+    Front-end: jsp, bootstrap, jquery
+    Back-end: Spring, Hibernate
+    DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+        Though it must be a relational DB.
+    Tools: git,maven,jenkins,nexus,liquibase.
+
+    My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
@@ -11,6 +28,8 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/forum.css">
+  <link rel="icon" href="${pageContext.request.contextPath}/resources/images/flags/ru.png">
+
   <script>
     $localeCode    = '<spring:message code="locale.code"    htmlEscape="true"/>';
     $labelUsername = '<spring:message code="label.username" htmlEscape="true"/>';
@@ -35,12 +54,17 @@
   <script src="${pageContext.request.contextPath}/resources/javascript/app/dialog.js"></script>
   <%-- script src="${pageContext.request.contextPath}/resources/javascript/app/signin.js"></script --%>
 
-
   <decorator:head/>
-
+  <title>
+    <decorator:title/>
+  </title>
 </head>
 <body>
   <jsp:include page="../template/topLine.jsp"/>
+  <div id="external-links-container">
+    <span><a href="https://github.com/VladimirSharapov/SpringWebForum" target="_blank"><spring:message code="link.github"/></a></span>
+    <span><a href="https://www.linkedin.com/in/vladimir-sharapov-6075207" target="_blank"><spring:message code="link.linkedin"/></a></span>
+  </div>
   <decorator:body></decorator:body>
   <div class="container">
     <footer>
