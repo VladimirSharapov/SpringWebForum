@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This project is a simple web forum. I created it just to
+    demonstrate my programming skills to potential employers.
+
+    Here is short description: ( for more detailed description please reade README.md or
+    go to https://github.com/VladimirSharapov/SpringWebForum )
+
+    Front-end: jsp, bootstrap, jquery
+    Back-end: Spring, Hibernate
+    DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+        Though it must be a relational DB.
+    Tools: git,maven,jenkins,nexus,liquibase.
+
+    My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+
+-->
+
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -24,10 +42,67 @@
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="1"/>
+        <property name="contentNegotiationManager">
+            <bean class="org.springframework.web.accept.ContentNegotiationManager">
+                <constructor-arg>
+                    <list>
+                        <bean class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
+                            <constructor-arg>
+                                <map>
+                                    <entry key="json" value="application/json"/>
+                                    <entry key="xml"  value="application/xml"/>
+                                    <entry key="rss"  value="application/rss+xml"/>
+                                </map>
+                            </constructor-arg>
+                        </bean>
+                        <bean class="org.springframework.web.accept.HeaderContentNegotiationStrategy"/>
+                    </list>
+                </constructor-arg>
+            </bean>
+        </property>
+
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="topic/recent.rss" class="org.shv.webforum.controller.view.RssViewer">
+        <property name="contentType" value="application/rss+xml;charset=UTF-8"/>
+    </bean>
+
+    <bean id="posts/recent.rss" class="org.shv.webforum.controller.view.PostListRssViewer">
+        <property name="contentType" value="application/rss+xml;charset=UTF-8"/>
+    </bean>
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="en" />
+    </bean>
+
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang"/>
+        </bean>
+    </mvc:interceptors>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.shv.webforum.service.common.NotFoundException">redirect:/errors/404</prop>
+                <prop key="org.springframework.security.web.authentication.rememberme.CookieTheftException">redirect:/errors/404</prop>
+            </props>
+        </property>
+        <property name="warnLogCategory" value="org.shv.home"/>
+        <property name="defaultErrorView" value="redirect:/errors/500"/>
     </bean>
 </beans>
