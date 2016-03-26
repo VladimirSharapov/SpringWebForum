@@ -1,6 +1,12 @@
+@media (max-width: 479px) {
+    .pagination a {
+        padding: 0px 7px;
+    }
+}
+
 @media (min-width: 980px) {
     body {
-        padding-top: 50px; /*60px to make the container go all the way to the bottom of the topbar */
+        padding-top: 50px;
     }
 
     .nav-collapse.collapse {
@@ -8,10 +14,25 @@
     }
 }
 
+body {
+    font-family: Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    background-image: url("../images/fabric-plaid.png");
+}
+
+
+
+#external-links-container {
+    font-family: Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    font-size: 14px;
+}
+
+#external-links-container > span {
+    margin:0px 10px;
+}
+
 .logo-text {
     font-family: 'Arial', cursive;
 }
-
 
 .logo-container {
     float: left;
@@ -32,6 +53,11 @@
     color: rgb(85, 85, 85)
 }
 
+.forum-pagination-container {
+    line-height: 36px;
+    margin-bottom: 10px;
+}
+
 .forum-pagination {
     margin: 0px;
 }
@@ -43,6 +69,7 @@
 
 #topics-table .topics-posts {
     font-size: 11px;
+    width: 85px;
 }
 
 .rss-icon {
@@ -57,7 +84,17 @@
 }
 
 .forum-sections-header {
-    margin: 0;
+    margin: 0px;
+}
+
+#foreword {
+    margin: 20px 0px 20px 0px;
+}
+
+#foreword p {
+    font-color: black;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .forum-sections-userstats-container {
@@ -82,6 +119,10 @@
     text-rendering: optimizelegibility;
     line-height: 27px;
     font-size: 18px;
+}
+
+.table-title h2 a {
+    color: white;
 }
 
 .table td {
@@ -144,12 +185,24 @@
     font-size: 13px;
 }
 
+.post {
+    width: 100%;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
+
 .post-content-body {
     overflow: auto;
     line-height: 16px;
     font-size: 13px;
     text-align: left;
     vertical-align: top;
+}
+
+.post table .userinfo {
+    vertical-align: top;
+    width: 20%;
 }
 
 .table .post-content-td {
@@ -301,4 +354,44 @@ ul.lang-menu li img {
 #signup-modal-dialog .controls {
     margin-bottom: 7px;
     margin-left: 20px;
+}
+
+.control-group input.error,  .control-group textarea.error {
+    color: #b94a48 !important;
+    border-color: #b94a48 !important;
+}
+
+.control-group .help-inline {
+    color: #b94a48;
+}
+
+.full-width {
+    width: 100%;
+}
+
+div.anchor {
+    position: relative;
+    z-index: -1000;
+    top: -50px;
+    left: -100px;
+    visibility: hidden;
+    width: 1px;
+    line-height: 0;
+}
+
+
+.new-topic-buttons {
+    float: left;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#topics-table .latest-by {
+    font-size: 10px;
+    width: 170px;
+}
+
+.text_errorpage {
+    max-width: 420px;
+    display: inline-block;
 }
