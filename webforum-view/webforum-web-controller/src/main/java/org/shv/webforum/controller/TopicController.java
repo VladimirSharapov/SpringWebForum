@@ -93,7 +93,7 @@ public class TopicController {
     /**
      * Adds new post to topic.
      *
-     * @param topicId        topic id to which post is added
+     * @param topicId        id of the topic to which post is added
      * @param submittedPost  post to add
      * @param result         result post data validation
      * @param page           number of the page to which we return in case of error during data validation
