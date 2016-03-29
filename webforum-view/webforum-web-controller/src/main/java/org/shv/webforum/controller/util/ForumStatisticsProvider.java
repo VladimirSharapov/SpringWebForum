@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * This class contains methods for getting and calculate forum statistic information.
+ * This class contains methods for getting and calculating forum statistic information.
  *
  * @author Vladimir Sharapov
  */
