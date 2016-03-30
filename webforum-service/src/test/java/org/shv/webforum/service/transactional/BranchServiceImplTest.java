@@ -19,13 +19,18 @@ import org.shv.webforum.model.dao.BranchDao;
 import org.shv.webforum.model.dao.PostDao;
 import org.shv.webforum.model.dao.TopicDao;
 import org.shv.webforum.model.entity.Branch;
+import org.shv.webforum.model.entity.Post;
 import org.shv.webforum.service.BranchService;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -71,6 +76,26 @@ public class BranchServiceImplTest {
 
     @Test
     public void testUpdateLastPost() throws Exception {
+        Branch branch = new Branch("name","description");
+        Post lastPost = new Post();
 
+        branchService.updateLastPost(branch,lastPost);
+
+        assertSame(lastPost,branch.getLastPost());
+    }
+
+    @Test
+    public void testGetAllPostsInBranch() throws Exception {
+        Branch branch = new Branch("name","description");
+        Post post = new Post();
+        List<Post> postList = new ArrayList<>();
+        postList.add(post);
+
+        when(postDao.getPostsInBranch(branch)).thenReturn(postList);
+
+        List<Post> actualPostList = branchService.getAllPostsInBranch(branch);
+
+        assertEquals(postList.size(), actualPostList.size());
+        assertSame(post,actualPostList.get(0));
     }
 }
