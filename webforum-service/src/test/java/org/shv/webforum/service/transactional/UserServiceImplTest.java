@@ -33,14 +33,6 @@ import static org.junit.Assert.*;
 public class UserServiceImplTest {
 
 
-    @Mock
-    List mockedList;
-//
-//    @Before
-//    public void setUp() {
-//        mockedList = mock(List.class);
-//    }
-
     @Test
     public void testGetCurrentUser() throws Exception {
 
@@ -54,97 +46,5 @@ public class UserServiceImplTest {
     @Test
     public void testUpdatePostCount() throws Exception {
 
-      //  when(mockedList.indexOf("one")).thenReturn(10,11);
-        when(mockedList.indexOf(any(String.class))).thenReturn(10,11);
-        when(mockedList.indexOf(anyString())).thenReturn(10, 11);
-        when(mockedList.indexOf(eq("one"))).thenReturn(10, 11);
-      //  doThrow(new RuntimeException()).when(mockedList).clear();
-
-        // when(mockedList.indexOf("one")).thenThrow(new RuntimeException());
-
-        mockedList.add("one");
-        mockedList.add("two");
-        mockedList.clear();
-
-        verify(mockedList).add("one");
-        verify(mockedList).clear();
-
-        int i = mockedList.indexOf("one");
-        System.out.println(i);
-        i = mockedList.indexOf("aone");
-        System.out.println(i);
-
-        verify(mockedList, times(2)).indexOf(anyString());
-        verify(mockedList, never()).add("never happened");
-
-        verify(mockedList, atLeast(2)).indexOf(anyString());
-        verify(mockedList, atMost(1)).indexOf(anyString());
     }
-
-
-    @Test
-    public void testInOrder() {
-        List singleMock = mock(List.class);
-
-        //using a single mock
-        singleMock.add("was added first");
-        singleMock.add("was added second");
-
-        //create an inOrder verifier for a single mock
-        InOrder inOrder = inOrder(singleMock);
-
-        //following will make sure that add is first called with "was added first, then with "was added second"
-        inOrder.verify(singleMock).add("was added first");
-        inOrder.verify(singleMock).add("was added second");
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        List firstMock = mock(List.class);
-        List secondMock = mock(List.class);
-
-        //using mocks
-        firstMock.add("was called first");
-        secondMock.add("was called second");
-
-        //create inOrder object passing any mocks that need to be verified in order
-        InOrder inOrder1 = inOrder(firstMock, secondMock);
-
-        //following will make sure that firstMock was called before secondMock
-        inOrder1.verify(firstMock).add("was called first");
-        inOrder1.verify(secondMock).add("was called second");
-    }
-
-    @Test
-    public void testZeroInteractions() {
-        // mockedList.clear();    // if uncomment will fail
-        verifyZeroInteractions(mockedList);
-
-        mockedList.clear();
-        mockedList.add("one");
-        verify(mockedList).clear();
-        verify(mockedList).add("one");
-        verifyNoMoreInteractions(mockedList);
-    }
-
-    @Test
-    public void testConsecutive() {
-        when(mockedList.add("some arg"))
-                .thenThrow(new RuntimeException())
-                .thenReturn(true);
-
-        //First call: throws runtime exception:
-        try{
-            mockedList.add("some arg");
-        } catch(RuntimeException ex) {}
-
-
-        //Second call: prints true
-        System.out.println(mockedList.add("some arg"));
-
-        //Any consecutive call: prints true as well (last stubbing wins).
-        System.out.println(mockedList.add("some arg"));
-
-
-
-    }
-
 }
