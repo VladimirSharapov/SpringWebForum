@@ -78,7 +78,7 @@
               <c:out value='${userDefinedCopyright}'/>
             </c:otherwise>
           </c:choose><br/>
-          Powered by Vladimir Sharapov ${project.version} by <a class="space-left-small" href="http://shv.org">shv.org</a><br/>
+          Powered by <a class="space-left-small" href="https://ru.linkedin.com/in/vladimir-sharapov-6075207">Vladimir Sharapov</a><br/>
           Design with <a class="space-left-small" href="http://getbootstrap.com">Twitter Bootstrap</a>
         </div>
 
