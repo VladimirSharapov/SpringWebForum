@@ -33,7 +33,7 @@
             <column name="FIRSTNAME" value="Vladimir"/>
             <column name="LASTNAME" value="Sharapov"/>
             <column name="EMAIL" value="vladimirr.sharapov@gmail.com"/>
-            <column name="REGISTRATIONDATE" value="${now}"/>
+            <column name="REGISTRATIONDATE" valueComputed="${now}"/>
             <column name="POSTCOUNT" value="34"/>
         </insert>
         <insert tableName="USER">
@@ -43,7 +43,7 @@
             <column name="FIRSTNAME" value="Visitor"/>
             <column name="LASTNAME" value="Visitor"/>
             <column name="EMAIL" value="visitor@gmail.com"/>
-            <column name="REGISTRATIONDATE" value="${now}"/>
+            <column name="REGISTRATIONDATE" valueComputed="${now}"/>
             <column name="POSTCOUNT" value="0"/>
         </insert>
     </changeSet>
@@ -105,7 +105,7 @@
 
         <insert tableName="BRANCH">
             <column name="ID" value="3"/>
-            <column name="NAME" value="NEW ATHENA, MOSCOW, RUSSIA (JAVA DEVELOPER, 2012 - 2016)"/>
+            <column name="NAME" value="New Athena, Sr. Java developer, 2012 - 2016"/>
             <column name="DESCRIPTION"
                     value="IT company, which provides enterprise level services for banks and financial institutions"/>
             <column name="SECTION" value="2"/>
@@ -114,7 +114,7 @@
 
         <insert tableName="BRANCH">
             <column name="ID" value="4"/>
-            <column name="NAME" value="ROSTELECOM, MOSCOW, RUSSIA (JAVA DEVELOPER, 2009 - 2012)"/>
+            <column name="NAME" value="Rostelecom, Java Developer, 2009 - 2012)"/>
             <column name="DESCRIPTION" value="The biggest telecommunication company in Russia"/>
             <column name="SECTION" value="2"/>
             <column name="LASTPOST"/>
@@ -122,7 +122,7 @@
 
         <insert tableName="BRANCH">
             <column name="ID" value="5"/>
-            <column name="NAME" value="UCI (POSDOCTORAL ASSOCIATE)"/>
+            <column name="NAME" value="University of California, Irvine, Postdoctoral associate, 2006-2009"/>
             <column name="DESCRIPTION" value="University of California, Irvine"/>
             <column name="SECTION" value="2"/>
             <column name="LASTPOST"/>
@@ -157,7 +157,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="1"/>
             <column name="TITLE" value="PhD thesis"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="1"/>
         </insert>
@@ -165,7 +165,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="2"/>
             <column name="TITLE" value="Publications"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="1"/>
         </insert>
@@ -173,7 +173,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="3"/>
             <column name="TITLE" value="Scientific advisors"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="1"/>
         </insert>
@@ -181,7 +181,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="4"/>
             <column name="TITLE" value="Master Thesis"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="2"/>
         </insert>
@@ -189,7 +189,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="5"/>
             <column name="TITLE" value="Publications"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="2"/>
         </insert>
@@ -197,7 +197,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="6"/>
             <column name="TITLE" value="Scientific advisors"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="2"/>
         </insert>
@@ -205,7 +205,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="7"/>
             <column name="TITLE" value="Accomplishments"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="3"/>
         </insert>
@@ -213,7 +213,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="8"/>
             <column name="TITLE" value="Technology stack"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="3"/>
         </insert>
@@ -221,7 +221,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="9"/>
             <column name="TITLE" value="Accomplishments"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="4"/>
         </insert>
@@ -229,7 +229,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="10"/>
             <column name="TITLE" value="Technology stack"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="4"/>
         </insert>
@@ -237,7 +237,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="11"/>
             <column name="TITLE" value="Accomplishments"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="5"/>
         </insert>
@@ -245,7 +245,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="12"/>
             <column name="TITLE" value="Technology stack"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="5"/>
         </insert>
@@ -253,7 +253,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="13"/>
             <column name="TITLE" value="Publications"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="5"/>
         </insert>
@@ -262,7 +262,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="14"/>
             <column name="TITLE" value="Strongest skills"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="6"/>
         </insert>
@@ -270,7 +270,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="15"/>
             <column name="TITLE" value="Other skills"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="6"/>
         </insert>
@@ -278,7 +278,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="16"/>
             <column name="TITLE" value="Sun Certified Java Programmer 6"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="7"/>
         </insert>
@@ -286,7 +286,7 @@
         <insert tableName="TOPIC">
             <column name="ID" value="17"/>
             <column name="TITLE" value="Summary"/>
-            <column name="CREATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="BRANCH" value="8"/>
         </insert>
@@ -297,8 +297,8 @@
             <column name="ID" value="1"/>
             <column name="POSTCONTENT"
                     value="In my PhD thesis I investigated many particle quatum systems by using computer simulations"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="1"/>
         </insert>
@@ -306,8 +306,8 @@
         <insert tableName="POST">
             <column name="ID" value="2"/>
             <column name="POSTCONTENT" value="Published 10 articles in international journals"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="2"/>
         </insert>
@@ -316,8 +316,8 @@
             <column name="ID" value="3"/>
             <column name="POSTCONTENT"
                     value="My scientific advisors : professor Yurii Lozovik and professor Vladimir Man'ko"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="3"/>
         </insert>
@@ -326,8 +326,8 @@
             <column name="ID" value="4"/>
             <column name="POSTCONTENT"
                     value="In my Master thesis I investigated tomographic representation of quatum mechanics"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="4"/>
         </insert>
@@ -335,8 +335,8 @@
         <insert tableName="POST">
             <column name="ID" value="5"/>
             <column name="POSTCONTENT" value="Published 3 articles in international journals"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="5"/>
         </insert>
@@ -344,80 +344,80 @@
         <insert tableName="POST">
             <column name="ID" value="6"/>
             <column name="POSTCONTENT" value="My scientific advisor was professor Vladimir Man'ko"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="6"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="7"/>
-            <column name="POSTCONTENT" value="Accomplishment1"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Investigated and selected technology stack used for development of new banking system, which is now adopted by five banks in Russia"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="7"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="8"/>
-            <column name="POSTCONTENT" value="Accomplishment2"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Contributed to design and architecture discussions of developed banking system"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="7"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="9"/>
-            <column name="POSTCONTENT" value="Accomplishment3"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Partnered with system analysts and project manager to implement business requirements"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="7"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="10"/>
-            <column name="POSTCONTENT" value="Accomplishment4"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Implemented core functionality of developed banking system, such as security, logging, exception handling strategy, base classes, custom UI controls, integration with Activiti BPM engine"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="7"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="11"/>
-            <column name="POSTCONTENT" value="Accomplishment5"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Implemented several business modules of banking system for demonstration purpose (UI and back- end development)"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="7"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="12"/>
-            <column name="POSTCONTENT" value="Accomplishment6"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Provided mentoring for junior members of the development team"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="7"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="13"/>
-            <column name="POSTCONTENT" value="Accomplishment7"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Developed server side business logic for unified client registry application, which is used by one of the biggest banks in Russia (around 500 users)"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="7"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="14"/>
-            <column name="POSTCONTENT" value="Accomplishment8"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Developed server side business logic for system processing registry payments (around 20 000 payments every day)"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="7"/>
         </insert>
@@ -425,8 +425,8 @@
         <insert tableName="POST">
             <column name="ID" value="15"/>
             <column name="POSTCONTENT" value="Programming languages: Java, PL/SQL, JavaScript "/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="8"/>
         </insert>
@@ -434,8 +434,8 @@
         <insert tableName="POST">
             <column name="ID" value="16"/>
             <column name="POSTCONTENT" value="Frameworks and products: Spring, Hibernate "/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="8"/>
         </insert>
@@ -443,8 +443,8 @@
         <insert tableName="POST">
             <column name="ID" value="17"/>
             <column name="POSTCONTENT" value="Application Servers: Tomcat, JBoss, Weblogic "/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="8"/>
         </insert>
@@ -452,8 +452,8 @@
         <insert tableName="POST">
             <column name="ID" value="18"/>
             <column name="POSTCONTENT" value="Database: Oracle"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="8"/>
         </insert>
@@ -461,36 +461,35 @@
         <insert tableName="POST">
             <column name="ID" value="19"/>
             <column name="POSTCONTENT" value="Project tools: maven, git, jenkins, nexus "/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="8"/>
         </insert>
 
-
         <insert tableName="POST">
             <column name="ID" value="20"/>
-            <column name="POSTCONTENT" value="Accomplishment1"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Implemented  several features for telecom billing system"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="9"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="21"/>
-            <column name="POSTCONTENT" value="Accomplishment2"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Implemented several business processes  for Amdocs CRM system, adopted by company. That included UI and backend development. Business process developed are: DSL service sales process, SIP telephony sales process, IPTV sales process, Technical support process. (Every day around 5000  business process are started)."/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="9"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="22"/>
-            <column name="POSTCONTENT" value="Accomplishment3"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Developed several integration solutions between CRM system and external systems, such as  IVR system, external IPTV platfroms and so on."/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="9"/>
         </insert>
@@ -498,8 +497,8 @@
         <insert tableName="POST">
             <column name="ID" value="23"/>
             <column name="POSTCONTENT" value="Programming languages: Java, PL/SQL, JavaScript "/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="10"/>
         </insert>
@@ -507,8 +506,8 @@
         <insert tableName="POST">
             <column name="ID" value="24"/>
             <column name="POSTCONTENT" value="Frameworks and products: Spring, Hibernate "/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="10"/>
         </insert>
@@ -516,8 +515,8 @@
         <insert tableName="POST">
             <column name="ID" value="25"/>
             <column name="POSTCONTENT" value="Application Servers: Tomcat, JBoss, Weblogic "/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="10"/>
         </insert>
@@ -525,8 +524,8 @@
         <insert tableName="POST">
             <column name="ID" value="26"/>
             <column name="POSTCONTENT" value="Database: Oracle"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="10"/>
         </insert>
@@ -534,17 +533,17 @@
         <insert tableName="POST">
             <column name="ID" value="27"/>
             <column name="POSTCONTENT" value="Project tools: maven, git, jenkins, nexus "/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="10"/>
         </insert>
 
         <insert tableName="POST">
             <column name="ID" value="28"/>
-            <column name="POSTCONTENT" value="Accomplishments UCI"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="POSTCONTENT" value="Published two papers, one of them in Physical Review Letters, which is one of the most highly citedjournals in physics."/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="11"/>
         </insert>
@@ -552,8 +551,8 @@
         <insert tableName="POST">
             <column name="ID" value="29"/>
             <column name="POSTCONTENT" value="Technology stack: C++, Boost.MPI, Unix, make"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="12"/>
         </insert>
@@ -562,8 +561,8 @@
             <column name="ID" value="30"/>
             <column name="POSTCONTENT"
                     value="Published two articles, one of them in Physical Review Letters journal, which is one of the most cited journals in physics."/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="13"/>
         </insert>
@@ -571,8 +570,8 @@
         <insert tableName="POST">
             <column name="ID" value="31"/>
             <column name="POSTCONTENT" value="Java/Java EE, Spring, Hibernate, REST Web Services, Oracle DB (SQL, PL/SQL), Vaadin, Activiti BPM, EJB, Tomcat, Jetty, Weblogic, git, svn, ant, maven, JavaScript, JQuery, TDD."/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="14"/>
         </insert>
@@ -580,8 +579,8 @@
         <insert tableName="POST">
             <column name="ID" value="32"/>
             <column name="POSTCONTENT" value="Amdocs Framework, Oracle BPM, WebSphere, Oracle Data Integrator, JMS ( inside Weblogic )"/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="15"/>
         </insert>
@@ -589,8 +588,8 @@
         <insert tableName="POST">
             <column name="ID" value="33"/>
             <column name="POSTCONTENT" value="I passed this exam in 2009. My score was 91%."/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="16"/>
         </insert>
@@ -598,14 +597,11 @@
         <insert tableName="POST">
             <column name="ID" value="34"/>
             <column name="POSTCONTENT" value="Sun Certified Java Programmer/Software Engineer with over 6 years of experience in the full SDLC  with a  strong focus on design, development and maintenance of enterprise systems. Extensive  knowledge of core Java as well as J2EE technologies and experience of applying these technologies in solving system, business logic and integration tasks."/>
-            <column name="CREATIONDATE" value="${now}"/>
-            <column name="MODIFICATIONDATE" value="${now}"/>
+            <column name="CREATIONDATE" valueComputed="${now}"/>
+            <column name="MODIFICATIONDATE" valueComputed="${now}"/>
             <column name="USER" value="1"/>
             <column name="TOPIC" value="17"/>
         </insert>
-
-
-
     </changeSet>
 
     <changeSet  author="shv" id="UPDATE_BRANCH">

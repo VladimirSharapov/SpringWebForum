@@ -32,7 +32,7 @@
                 <dbms type="postgresql"/>
             </or>
         </preConditions>
-        <createSequence startValue="1" incrementBy="1" sequenceName="WF_SEQUENCE"/>
+        <createSequence startValue="1000" incrementBy="1" sequenceName="WF_SEQUENCE"/>
     </changeSet>
 
     <!-- TABLE USED AS SEQUENCE FOR ID GENERATION (in case db doesn't support sequence, like mysql) -->
