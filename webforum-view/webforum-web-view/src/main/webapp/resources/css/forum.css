@@ -1,0 +1,397 @@
+@media (max-width: 479px) {
+    .pagination a {
+        padding: 0px 7px;
+    }
+}
+
+@media (min-width: 980px) {
+    body {
+        padding-top: 50px;
+    }
+
+    .nav-collapse.collapse {
+        display: inline;
+    }
+}
+
+body {
+    font-family: Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    background-image: url("../images/fabric-plaid.png");
+}
+
+
+
+#external-links-container {
+    font-family: Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    font-size: 14px;
+}
+
+#external-links-container > span {
+    margin:0px 10px;
+}
+
+.logo-text {
+    font-family: 'Arial', cursive;
+}
+
+.logo-container {
+    float: left;
+    display: block;
+    padding: 5px 12px 0px 0px;
+    line-height: 1;
+}
+
+.forum-sections-header-actions {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.forum-sections-recent-unanswered {
+    font-weight: bold;
+    padding-left: 2px;
+    color: rgb(85, 85, 85)
+}
+
+.forum-pagination-container {
+    line-height: 36px;
+    margin-bottom: 10px;
+}
+
+.forum-pagination {
+    margin: 0px;
+}
+
+.forum-sections-branch-description-container {
+    font-style: italic;
+    font-size: 10px;
+}
+
+#topics-table .topics-posts {
+    font-size: 11px;
+    width: 85px;
+}
+
+.rss-icon {
+    vertical-align: middle;
+}
+
+.forum-sections-stats-container {
+    min-height: 10px;
+    padding: 5px;
+    margin: 0px;
+    margin-bottom: 5px;
+}
+
+.forum-sections-header {
+    margin: 0px;
+}
+
+#foreword {
+    margin: 20px 0px 20px 0px;
+}
+
+#foreword p {
+    font-color: black;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.forum-sections-userstats-container {
+    min-height: 10px;
+    padding: 5px;
+    margin: 0px;
+}
+
+.table-title {
+    border: 0px !important;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    padding-top: 10px !important;
+
+    /* Use this styles instead of <h3> tag inside <th>. To fit HTML5 standard*/
+    margin: 0;
+    font-weight: bold;
+    background-color: #444 !important;
+    color: #444;
+    text-rendering: optimizelegibility;
+    line-height: 27px;
+    font-size: 18px;
+}
+
+.table-title h2 a {
+    color: white;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.table-with-titles td, .table-with-titles th {
+    border: 1px solid #DDDDDD;
+}
+
+
+#topics-table {
+    word-wrap: break-word;
+}
+
+#topics-table td {
+    padding-top: 4px;
+    padding-bottom: 6px;
+}
+
+#topics-table .branch-title {
+    font-weight: bold;
+    line-height: 18px;
+    font-size: 14px;
+}
+
+#topics-table .title-col{
+    word-break:break-all;
+}
+
+.h-nostyle {
+    line-height: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+
+#branch-header {
+    line-height: 3.2em;
+    overflow: hidden;
+}
+
+#branch-header h2 {
+    float: left;
+}
+
+#branch-header #right-block {
+    float: right;
+    overflow: hidden;
+}
+
+#branch-header #right-block a {
+    font-weight: bold;
+    padding-left: 2px;
+    color: rgb(85, 85, 85);
+}
+
+.breadcrumb-link {
+    font-weight: normal;
+    font-size: 13px;
+}
+
+.post {
+    width: 100%;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
+
+.post-content-body {
+    overflow: auto;
+    line-height: 16px;
+    font-size: 13px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.post table .userinfo {
+    vertical-align: top;
+    width: 20%;
+}
+
+.table .post-content-td {
+    vertical-align: top;
+    word-break: break-word;
+}
+
+.forum-logo {
+    height: 31px;
+    width: 34px;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+ul.lang-menu li img {
+    vertical-align: middle;
+}
+
+#lang-selector-toggle-li .tooltip {
+    white-space: pre-wrap;
+    max-width: 71px;
+}
+
+#lang-selector-toggle-li .tooltip .tooltip-inner {
+    word-wrap: normal;
+}
+
+.topline-dropdown-menu {
+    margin: 10px 0 2px 15px;
+}
+
+
+.form-login-related {
+    max-width: 480px;
+}
+
+
+#login-form .form-actions {
+    padding-left: 0px;
+}
+
+.control-group input[type=checkbox],
+.control-group input[type=radio] {
+    float: left;
+    margin-right: 5px;
+}
+
+
+.help-inline._error {
+    color: #b94a48;
+}
+
+
+#page-signin-submit-button {
+    clear: left;
+    width: 220px;
+    height: 32px;
+    font-size: 13px;
+}
+
+/* user profile */
+
+.user-profile-hr {
+    margin: 6px 0 6px 0;
+}
+
+
+.user-profile-buttons-form-actions {
+    padding-left: 160px;
+}
+
+
+.space-left-medium {
+    margin-left: 4px;
+}
+
+.user-profile-container {
+    width: 630px;
+    margin: 5% 0 0 15%;
+    position: relative;
+}
+
+.user-profile-header {
+    line-height: 100px;
+}
+
+
+.user-profile-top-buttons {
+    padding-top: 4px;
+}
+
+.user-profile-buttons-avatar {
+    width: 150px;
+    display: inline-block;
+    text-align: left;
+}
+
+
+.userprofile {
+    display: inline-block;
+    width: 450px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 12px;
+}
+
+/* modal window */
+
+.modal .close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+.modal .modal-header {
+    background-color: rgb(245, 245, 245)
+}
+
+#signin-modal-dialog #signin-submit-button {
+    clear: left;
+    width: 100%;
+    height: 32px;
+    font-size: 13px;
+}
+
+#signin-modal-dialog div.control-group {
+    margin: 0 0 0 25px;
+}
+
+#signin-modal-dialog #rememberme-area {
+    margin: 0px 10px 0px 25px;
+}
+
+#signup-modal-dialog .help-block {
+    margin: 0px 5px;
+}
+
+#signup-modal-dialog input {
+    margin-bottom: 0px;
+}
+
+#signup-modal-dialog .controls {
+    margin-bottom: 7px;
+    margin-left: 20px;
+}
+
+.control-group input.error,  .control-group textarea.error {
+    color: #b94a48 !important;
+    border-color: #b94a48 !important;
+}
+
+.control-group .help-inline {
+    color: #b94a48;
+}
+
+.full-width {
+    width: 100%;
+}
+
+div.anchor {
+    position: relative;
+    z-index: -1000;
+    top: -50px;
+    left: -100px;
+    visibility: hidden;
+    width: 1px;
+    line-height: 0;
+}
+
+
+.new-topic-buttons {
+    float: left;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#topics-table .latest-by {
+    font-size: 10px;
+    width: 170px;
+}
+
+.text_errorpage {
+    max-width: 420px;
+    display: inline-block;
+}

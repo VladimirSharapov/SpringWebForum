@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This project is a simple web forum. I created it just to
+    demonstrate my programming skills to potential employers.
+
+    Here is short description: ( for more detailed description please reade README.md or
+    go to https://github.com/VladimirSharapov/SpringWebForum )
+
+    Front-end: jsp, bootstrap, jquery
+    Back-end: Spring, Hibernate
+    DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+        Though it must be a relational DB.
+    Tools: git,maven,jenkins,nexus,liquibase.
+
+    My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+
+-->
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <!-- SEQUENCE FOR ID GENERATION -->
+    <changeSet author="shv" id="CREATE_WF_SEQUENCE">
+        <preConditions onFail="CONTINUE">
+            <or>
+                <dbms type="oracle" />
+                <dbms type="h2"/>
+                <dbms type="postgresql"/>
+            </or>
+        </preConditions>
+        <createSequence startValue="1000" incrementBy="1" sequenceName="WF_SEQUENCE"/>
+    </changeSet>
+
+    <!-- TABLE USED AS SEQUENCE FOR ID GENERATION (in case db doesn't support sequence, like mysql) -->
+    <changeSet author="shv" id="CREATE_TABLE_WF_SEQUENCE">
+        <preConditions onFail="CONTINUE">
+            <dbms type="mysql"/>
+        </preConditions>
+
+        <comment>Create table WF_SEQUENCE for id generation and insert initial value</comment>
+
+        <createTable tableName="WF_SEQUENCE">
+          <column name="next_val" type="BIGINT"/>
+        </createTable>
+
+        <insert tableName="WF_SEQUENCE">
+            <column name="next_val" value="1100"/>
+        </insert>
+    </changeSet>
+
+    <!-- USER TABLE -->
+    <changeSet author="shv" id="CREATE_TABLE_USER">
+        <comment>Create table USER to store user data</comment>
+        <createTable tableName="USER">
+            <column name="ID" type="BIGINT">
+                <constraints  primaryKey="true"/>
+            </column>
+            <column name="USERNAME" type="${text}">
+                <constraints nullable="false" />
+            </column>
+            <column name="PASSWORD" type="${text}">
+                <constraints nullable="false" />
+            </column>
+            <column name="FIRSTNAME" type="${text}">
+            </column>
+            <column name="LASTNAME" type="${text}">
+            </column>
+            <column name="EMAIL" type="${text}">
+                <constraints nullable="false" />
+            </column>
+            <column name="REGISTRATIONDATE" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="POSTCOUNT" type="INT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="shv" id="ADD_AUTO_INCREMENT_FOR_USER_TABLE">
+       <addAutoIncrement
+            columnDataType="BIGINT"
+            columnName="ID"
+            tableName="USER"
+            incrementBy="1"
+            startWith="1" />
+    </changeSet>
+
+    <!-- SECTION TABLE -->
+    <changeSet author="shv" id="CREATE_TABLE_SECTION">
+        <comment>Create table SECTION to store section data</comment>
+        <createTable tableName="SECTION">
+            <column name="ID"          type="BIGINT">
+                <constraints  primaryKey="true"/>
+            </column>
+            <column name="NAME"        type="${text}">
+                <constraints nullable="false" />
+            </column>
+            <column name="DESCRIPTION" type="${text}">
+                <constraints nullable="false" />
+            </column>
+            <column name="POSITION"    type="INT">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="shv" id="ADD_AUTO_INCREMENT_FOR_SECTION_TABLE">
+        <addAutoIncrement
+                columnDataType="BIGINT"
+                columnName="ID"
+                tableName="SECTION"
+                incrementBy="1"
+                startWith="1" />
+    </changeSet>
+
+    <!-- BRANCH TABLE -->
+    <changeSet author="shv" id="CREATE_TABLE_BRANCH">
+        <comment>Create table BRANCH to store branch data</comment>
+        <createTable tableName="BRANCH">
+            <column name="ID" type="BIGINT">
+                <constraints  primaryKey="true"/>
+            </column>
+            <column name="NAME" type="${text}">
+                <constraints nullable="false" />
+            </column>
+            <column name="DESCRIPTION" type="${text}">
+                <constraints nullable="false" />
+            </column>
+            <column name="SECTION" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+            <column name="LASTPOST" type="BIGINT">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="shv" id="ADD_AUTO_INCREMENT_FOR_BRANCH_TABLE">
+        <addAutoIncrement
+                columnDataType="BIGINT"
+                columnName="ID"
+                tableName="BRANCH"
+                incrementBy="1"
+                startWith="1" />
+    </changeSet>
+
+    <changeSet author="shv" id="CREATE_FK_BRANCH_SECTION">
+        <comment>Create foreign key BRANCH SECTION</comment>
+        <addForeignKeyConstraint baseColumnNames="SECTION"
+                                 baseTableName="BRANCH"
+                                 constraintName="FK_BRANCH_SECTION"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="SECTION"/>
+    </changeSet>
+
+    <!-- TOPIC TABLE -->
+    <changeSet author="shv" id="CREATE_TABLE_TOPIC">
+        <comment>Create table TOPIC to store topic data</comment>
+        <createTable tableName="TOPIC">
+            <column name="ID" type="BIGINT">
+                <constraints  primaryKey="true"/>
+            </column>
+            <column name="TITLE" type="${text}">
+                <constraints nullable="false" />
+            </column>
+            <column name="CREATIONDATE" type="DATETIME">
+                <constraints nullable="false" />
+            </column>
+            <column name="USER" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+            <column name="BRANCH" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="shv" id="ADD_AUTO_INCREMENT_FOR_TOPIC_TABLE">
+        <addAutoIncrement
+                columnDataType="BIGINT"
+                columnName="ID"
+                tableName="TOPIC"
+                incrementBy="1"
+                startWith="1" />
+    </changeSet>
+
+    <changeSet author="shv" id="CREATE_FK_TOPIC_USER">
+        <comment>Create foreign key TOPIC USER</comment>
+        <addForeignKeyConstraint baseColumnNames="USER"
+                                 baseTableName="TOPIC"
+                                 constraintName="FK_TOPIC_USER"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="USER"/>
+    </changeSet>
+
+
+    <!-- POST TABLE -->
+    <changeSet author="shv" id="CREATE_TABLE_POST">
+        <comment>Create table POST to store post data</comment>
+        <createTable tableName="POST">
+            <column name="ID" type="BIGINT">
+                <constraints  primaryKey="true"/>
+            </column>
+            <column name="POSTCONTENT" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATIONDATE" type="DATETIME">
+                <constraints nullable="false" />
+            </column>
+            <column name="MODIFICATIONDATE" type="DATETIME">
+            </column>
+            <column name="USER" type="BIGINT">
+                <constraints  nullable="false" />
+            </column>
+            <column name="TOPIC" type="BIGINT">
+                <constraints  nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="shv" id="ADD_AUTO_INCREMENT_FOR_POST_TABLE">
+        <addAutoIncrement
+                columnDataType="BIGINT"
+                columnName="ID"
+                tableName="POST"
+                incrementBy="1"
+                startWith="1" />
+    </changeSet>
+
+    <changeSet author="shv" id="CREATE_FK_POST_USER">
+        <comment>Create foreign key POST USER</comment>
+        <addForeignKeyConstraint baseColumnNames="USER"
+                                 baseTableName="POST"
+                                 constraintName="FK_POST_USER"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="USER"/>
+    </changeSet>
+
+    <changeSet author="shv" id="CREATE_FK_POST_TOPIC">
+        <comment>Create foreign key POST TOPIC</comment>
+        <addForeignKeyConstraint baseColumnNames="TOPIC"
+                                 baseTableName="POST"
+                                 constraintName="FK_POST_TOPIC"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="TOPIC"/>
+    </changeSet>
+
+    <!-- created here because we can't create it until post table is created
+     and we need create BRANCH TABLE before TOPIC TABLE -->
+    <changeSet author="shv" id="CREATE_FK_BRANCH_POST">
+        <comment>Create foreign key BRANCH POST</comment>
+        <addForeignKeyConstraint baseColumnNames="LASTPOST"
+                                 baseTableName="BRANCH"
+                                 constraintName="FK_BRANCH_POST"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="POST"/>
+    </changeSet>
+
+
+    <!-- EXTERNALLINK TABLE -->
+    <changeSet author="shv" id="CREATE_TABLE_EXTERNALLINK">
+        <comment>Create table EXTERNALLINK to hold external links on a page</comment>
+        <createTable tableName="EXTERNALLINK">
+            <column name="ID" type="BIGINT">
+                <constraints  primaryKey="true"/>
+            </column>
+            <column name="URL" type="${text}">
+                <constraints nullable="false" />
+            </column>
+            <column name="TITLE" type="${text}">
+                <constraints nullable="false" />
+            </column>
+            <column name="HINT" type="${text}">
+                <constraints  nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="shv" id="ADD_AUTO_INCREMENT_FOR_EXTERNALLINK TABLE">
+        <addAutoIncrement
+                          columnDataType="BIGINT"
+                          columnName="ID"
+                          tableName="EXTERNALLINK"
+                          incrementBy="1"
+                          startWith="1" />
+    </changeSet>
+
+    <changeSet  author="shv" id="CREATE_TABLE_PERSISTENT_LOGINS">
+        <comment>Create table persistent_logins for spring security remember-me feature</comment>
+        <createTable tableName="PERSISTENT_LOGINS">
+            <column name="USERNAME" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERIES"   type="VARCHAR(64)">
+                <constraints  primaryKey="true"/>
+            </column>
+            <column name="TOKEN"    type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_USED" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

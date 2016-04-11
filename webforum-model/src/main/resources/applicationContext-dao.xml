@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This project is a simple web forum. I created it just to
+    demonstrate my programming skills to potential employers.
+
+    Here is short description: ( for more detailed description please reade README.md or
+    go to https://github.com/VladimirSharapov/SpringWebForum )
+
+    Front-end: jsp, bootstrap, jquery
+    Back-end: Spring, Hibernate
+    DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+        Though it must be a relational DB.
+    Tools: git,maven,jenkins,nexus,liquibase.
+
+    My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <bean id="genericDao" abstract="true" class="org.shv.webforum.common.GenericDao">
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="userDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.UserDaoImpl"/>
+
+    <bean id="externalLinkDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.ExternalLinkDaoImpl"/>
+
+    <bean id="postDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.PostDaoImpl"/>
+
+    <bean id="topicDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.TopicDaoImpl"/>
+
+    <bean id="branchDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.BranchDaoImpl"/>
+
+    <bean id="sectionDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.SectionDaoImpl"/>
+
+    <bean id="forumStatisticsDao"  class="org.shv.webforum.model.dao.impl.ForumStatisticsDaoImpl">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+
+    <!--underlying data source is wrapped with lazy one, so that connection is not retrieved from the pool unless-->
+    <!--it's really necessary. E.g. if Hibernate hits only cache, there is no need to fetch connection, but without lazy-->
+    <!--data source, it will be actually fetched if service methods are marked with @Transactional-->
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource">
+            <bean class="com.mchange.v2.c3p0.ComboPooledDataSource"
+                  destroy-method="close">
+                <!--the properties are set by ExtendedPropertyPlaceholderConfigurer -->
+                <property name="driverClass" value="${jdbc.driverClassName}"/>
+                <property name="jdbcUrl" value="${WF_DB_URL}"/>
+                <property name="user" value="${WF_DB_USER:root}"/>
+                <property name="password" value="${WF_DB_PASSWORD:root}"/>
+                <property name="maxStatements" value="1500"/>
+                <property name="maxStatementsPerConnection" value="50"/>
+                <!--Should be close to the size of the web server thread pool in order not to let threads wait for connections-->
+                <property name="maxPoolSize" value="50"/>
+                <!--Every hour we'll be hitting DB to make sure MySQL doesn't kill the connection. By default if connection
+                    is idle for 8 hrs, MySQL kills it -->
+                <property name="idleConnectionTestPeriod" value="3600"/>
+                <!--This is required because if all the connections are taken and threads are waiting, they might be blocked
+                forever. But if we specify this timeout, an exception will be raised in case of threads being blocked for too long.-->
+                <property name="checkoutTimeout" value="10000"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+          depends-on="liquibase">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list>
+                <value>org.shv.webforum.common</value>
+                <value>org.shv.webforum.model.entity</value>
+            </list>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.query.factory_class">
+                    org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory
+                </prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.connection.charset">${encoding}</prop>
+                <prop key="hibernate.connection.release_mode">auto</prop>
+                <!-- cache -->
+                <prop key="hibernate.cache.use_second_level_cache">
+                    ${hibernate.use_second_level_cache}
+                </prop>
+                <prop key="hibernate.cache.use_query_cache">
+                    ${hibernate.use_query_cache}
+                </prop>
+                <prop key="hibernate.cache.region.factory_class">
+                    ${HIBERNATE_CACHE_FACTORY:net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory}
+                </prop>
+                <prop key="net.sf.ehcache.configurationResourceName">
+                    ${ehcache.config:/ehcache.xml}
+                </prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- bean id="hibernateStatisticsMBean"
+          class="org.hibernate.jmx.StatisticsService">
+           <property name="statisticsEnabled" value="true"/>
+           <property name="sessionFactory" ref="sessionFactory"/>
+    </bean -->
+
+    <bean class="org.shv.webforum.util.ExtendedPropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:datasource.properties</value>
+                <value>classpath:hibernate.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="changeLog" value="classpath:/db/db.changelog-master.xml"/>
+    </bean>
+</beans>

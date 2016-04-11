@@ -1,0 +1,35 @@
+<!--
+
+    This project is a simple web forum. I created it just to
+    demonstrate my programming skills to potential employers.
+
+    Here is short description: ( for more detailed description please reade README.md or
+    go to https://github.com/VladimirSharapov/SpringWebForum )
+
+    Front-end: jsp, bootstrap, jquery
+    Back-end: Spring, Hibernate
+    DB: MySQL and H2(for testing) were used while developing, but the project is database independent.
+        Though it must be a relational DB.
+    Tools: git,maven,jenkins,nexus,liquibase.
+
+    My LinkedIn profile: https://ru.linkedin.com/in/vladimir-sharapov-6075207
+
+-->
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.sf.net/ehcache.xsd">
+
+    <diskStore path="java.io.tmpdir"   />
+
+    <!-- cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.jgroups.JGroupsCacheManagerPeerProviderFactory"
+                                     properties="connect=UDP(mcast_addr=235.0.0.1;mcast_port=45567;):PING:
+                    MERGE2:FD_SOCK:VERIFY_SUSPECT:pbcast.NAKACK:UNICAST:pbcast.STABLE:
+                    FRAG:pbcast.GMS"
+                                     propertySeparator="::"/-->
+
+    <!-- enable ehcache monitoring -->
+<!--     <cacheManagerPeerListenerFactory -->
+<!--         class="org.terracotta.ehcachedx.monitor.probe.ProbePeerListenerFactory" -->
+<!--         properties="monitorAddress=localhost, monitorPort=9889, memoryMeasurement=false" /> -->
+
+
+</ehcache>
