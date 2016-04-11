@@ -66,12 +66,5 @@
         </security:authentication-provider>
     </security:authentication-manager>
 
-    <!-- Use a Md5 encoder since the user's passwords are stored as Md5 in the database -->
-    <!-- bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder"/-->
     <bean id="passwordEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
-    <!-- security:user-service id="userDetailsService">
-        <security:user name="admin" password="admin" authorities="ROLE_ADMIN"/>
-    </security:user-service -->
-
-
 </beans>
