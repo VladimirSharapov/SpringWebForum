@@ -21,6 +21,7 @@ import org.shv.webforum.model.entity.Branch;
 
 import org.hibernate.SessionFactory;
 import org.shv.webforum.model.entity.Post;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ import java.util.List;
  *
  * @author Vladimir Sharapov
  */
+@Repository
 public class BranchDaoImpl extends GenericDao<Branch> implements BranchDao {
 
     public BranchDaoImpl(SessionFactory sessionFactory) {

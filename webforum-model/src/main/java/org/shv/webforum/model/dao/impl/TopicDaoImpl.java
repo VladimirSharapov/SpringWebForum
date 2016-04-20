@@ -26,6 +26,7 @@ import org.springframework.data.domain.PageRequest;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ import java.util.List;
  *
  * @author Vladimir Sharapov
  */
+@Repository
 public class TopicDaoImpl extends GenericDao<Topic> implements TopicDao {
 
     public TopicDaoImpl(SessionFactory sessionFactory) {

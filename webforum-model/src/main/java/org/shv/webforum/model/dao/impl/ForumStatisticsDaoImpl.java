@@ -18,6 +18,7 @@ package org.shv.webforum.model.dao.impl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.shv.webforum.model.dao.ForumStatisticsDao;
+import org.springframework.stereotype.Repository;
 
 /**
  * DAO class implementing {@link org.shv.webforum.model.dao.ForumStatisticsDao} interface.
@@ -26,6 +27,7 @@ import org.shv.webforum.model.dao.ForumStatisticsDao;
  *
  * @author Vladimir Sharapov
  */
+@Repository
 public class ForumStatisticsDaoImpl  implements ForumStatisticsDao {
 
     private SessionFactory sessionFactory;

@@ -20,12 +20,14 @@ import org.shv.webforum.model.dao.SectionDao;
 import org.shv.webforum.model.entity.Section;
 
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * @author Vladimir Sharapov
  */
+@Repository
 public class SectionDaoImpl extends GenericDao<Section> implements SectionDao {
 
     public SectionDaoImpl(SessionFactory sessionFactory) {

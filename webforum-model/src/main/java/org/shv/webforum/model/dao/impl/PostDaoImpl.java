@@ -27,6 +27,7 @@ import org.springframework.data.domain.PageRequest;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ import java.util.List;
 /**
  * @author Vladimir Sharapov
  */
+@Repository
 public class PostDaoImpl extends GenericDao<Post> implements PostDao {
 
     public PostDaoImpl(SessionFactory sessionFactory) {

@@ -20,11 +20,13 @@ import org.shv.webforum.model.dao.UserDao;
 import org.shv.webforum.model.entity.User;
 
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 
 /**
  * @author Vladimir Sharapov
  */
+@Repository
 public class UserDaoImpl extends GenericDao<User> implements UserDao {
 
     public UserDaoImpl(SessionFactory sessionFactory) {
