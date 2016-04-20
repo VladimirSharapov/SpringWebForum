@@ -32,6 +32,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.apache.commons.lang.RandomStringUtils.random;
+import static org.junit.Assert.assertTrue;
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
 
@@ -119,12 +120,10 @@ public class PostDaoImplTest extends BaseDaoImplTest<Post> {
 
         List<Post> postList = postDao.getLastPosts(topicList);
 
-
-      //  System.out.println("topic name: " + postList.get(0).getTopic().getTitle());
-     //   assertEquals(3,postList.size());
-      //  assertTrue(lastPostIdList.contains(postList.get(0).getId()));
-      //  assertTrue(lastPostIdList.contains(postList.get(1).getId()));
-       // assertTrue(lastPostIdList.contains(postList.get(2).getId()));
+        assertEquals(3,postList.size());
+        assertTrue(lastPostIdList.contains(postList.get(0).getId()));
+        assertTrue(lastPostIdList.contains(postList.get(1).getId()));
+        assertTrue(lastPostIdList.contains(postList.get(2).getId()));
     }
 
     //create domain objects to test constraint violation
