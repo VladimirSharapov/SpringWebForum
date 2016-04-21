@@ -29,6 +29,7 @@ import junitparams.JUnitParamsRunner;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.rules.SpringClassRule;
 import org.springframework.test.context.junit4.rules.SpringMethodRule;
@@ -57,6 +58,7 @@ import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEqua
 @RunWith(JUnitParamsRunner.class)
 @ContextConfiguration("classpath:/applicationContext-dao.xml")
 @Transactional
+@ActiveProfiles("test")
 public abstract class BaseDaoImplTest<T extends BaseEntity> {
 
     @ClassRule
