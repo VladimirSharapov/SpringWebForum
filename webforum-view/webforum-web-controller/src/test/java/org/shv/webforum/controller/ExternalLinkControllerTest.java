@@ -52,32 +52,37 @@ public class ExternalLinkControllerTest {
     }
 
     @Test
-    public void savingLinkShouldPassIfNoValidationErrorsFound() throws Exception {
+    public void testSaveLinkSuccess() throws Exception {
         when(bindingResult.hasErrors()).thenReturn(false);
 
-        JsonResponse expected = controller.saveLink(link(), bindingResult);
+        JsonResponse actual = controller.saveLink(link(), bindingResult);
 
-        assertEquals(expected.getStatus(), JsonResponseStatus.SUCCESS);
+        assertEquals(JsonResponseStatus.SUCCESS,actual.getStatus());
         verify(service).saveLink(any(ExternalLink.class));
+        verifyNoMoreInteractions(service);
     }
 
     @Test
-    public void testFailValidationSaveLink() throws Exception {
+    public void testSaveLinkFail() throws Exception {
         when(bindingResult.hasErrors()).thenReturn(true);
 
-        JsonResponse expected = controller.saveLink(link(), bindingResult);
+        JsonResponse actual = controller.saveLink(link(), bindingResult);
 
-        assertEquals(expected.getStatus(), JsonResponseStatus.FAIL);
+        assertEquals(JsonResponseStatus.FAIL,actual.getStatus());
         verify(service,never()).saveLink(any(ExternalLink.class));
     }
 
     @Test
     public void testDeleteLink() throws Exception {
-        boolean expectedResult = true;
+        boolean deleteResult = true;
         long id = 1L;
-        doReturn(expectedResult).when(service).deleteLink(eq(id));
-        JsonResponse expected = controller.deleteLink(id);
-        assertEquals(expected.getStatus(), JsonResponseStatus.SUCCESS);
+
+        doReturn(deleteResult).when(service).deleteLink(eq(id));
+        JsonResponse actual = controller.deleteLink(id);
+
+        assertEquals(JsonResponseStatus.SUCCESS,actual.getStatus());
+        assertEquals(new Boolean(deleteResult),actual.getResult());
+
         verify(service).deleteLink(eq(id));
     }
 
