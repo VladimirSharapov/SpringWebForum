@@ -42,11 +42,13 @@ import java.util.List;
 @Controller
 public class BranchController {
 
-    private static final String TOPIC_LIST_VIEW = "topicList";
-    private static final String TOPIC_FORM_VIEW = "topicForm";
-    private static final String SECTION_ATTR = "section";
-    private static final String BRANCH_ATTR  = "branch";
+    public  static final String TOPIC_LIST_VIEW = "topicList";
+    public  static final String TOPIC_FORM_VIEW = "topicForm";
+    public  static final String SECTION_ATTR = "section";
+    public  static final String BRANCH_ATTR  = "branch";
     private static final String URL_SUFFIX = "/branches/";
+    public static final String TOPICS_ATTR = "topics";
+    public static final String TOPICS_PAGE_ATTR = "topicsPage";
 
     private TopicService topicService;
     private BranchService branchService;
@@ -78,10 +80,10 @@ public class BranchController {
         Page<Topic> topicPage = topicService.fetchTopics(branch,page);
 
         return new ModelAndView(TOPIC_LIST_VIEW)
-                .addObject("section", branch.getSection())
-                .addObject("branch",branch)
-                .addObject("topics",topicPage.getContent())
-                .addObject("topicsPage",topicPage);
+                .addObject(SECTION_ATTR, branch.getSection())
+                .addObject(BRANCH_ATTR,branch)
+                .addObject(TOPICS_ATTR, topicPage.getContent())
+                .addObject(TOPICS_PAGE_ATTR, topicPage);
     }
 
     /**
