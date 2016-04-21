@@ -32,9 +32,6 @@ import java.util.List;
  */
 public class SectionControllerTest {
 
-    @Autowired
-    private WebApplicationContext wac;
-
     @Mock
     ForumStatisticsProvider forumStatisticsProvider;
 
