@@ -38,7 +38,7 @@
 
     <bean id="sectionDao" parent="genericDao" class="org.shv.webforum.model.dao.impl.SectionDaoImpl"/>
 
-    <bean id="forumStatisticsDao"  class="org.shv.webforum.model.dao.impl.ForumStatisticsDaoImpl">
+    <bean id="forumStatisticsDao" class="org.shv.webforum.model.dao.impl.ForumStatisticsDaoImpl">
         <constructor-arg ref="sessionFactory"/>
     </bean>
 
@@ -129,8 +129,29 @@
     </bean>
 
 
-    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="changeLog" value="classpath:/db/db.changelog-master.xml"/>
-    </bean>
+    <beans profile="test">
+        <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+            <property name="changeLogParameters">
+                <map>
+                    <entry key="loadDemoData" value="false"/>
+                </map>
+            </property>
+            <property name="dataSource" ref="dataSource"/>
+            <property name="changeLog" value="classpath:/db/db.changelog-master.xml"/>
+        </bean>
+    </beans>
+
+    <beans profile="demo">
+        <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+            <property name="changeLogParameters">
+                <map>
+                    <entry key="loadDemoData" value="true"/>
+                </map>
+            </property>
+            <property name="dataSource" ref="dataSource"/>
+            <property name="changeLog" value="classpath:/db/db.changelog-master.xml"/>
+        </bean>
+    </beans>
+
+
 </beans>
