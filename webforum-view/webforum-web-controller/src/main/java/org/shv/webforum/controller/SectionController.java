@@ -44,9 +44,15 @@ public class SectionController {
 
     private static Logger logger =  LoggerFactory.getLogger(SectionController.class);
 
-    private static final String SECTION_LIST_VIEW     = "sectionList";
-    private static final String SHOW_FORUM_STATS_ATTR = "showForumStatus";
-    private static final String SECTION_LIST_ATTR     = "sectionList";
+    public  static final String SECTION_LIST_VIEW     = "sectionList";
+    public static final String SHOW_FORUM_STATS_ATTR  = "showForumStatus";
+    public static final String SECTION_LIST_ATTR      = "sectionList";
+    public static final String POST_COUNT_ATTR         = "postsCount";
+    public static final String USERS_COUNT_ATTR        = "usersCount";
+    public static final String ONLINE_USERS_COUNT_ATTR = "onlineUsersCount";
+    public static final String REG_USERS_COUNT_ATTR    = "registeredUsersCount";
+    public static final String ANONYMOUS_ATTR          = "anonymousCount";
+
 
     private ForumStatisticsProvider forumStatisticsProvider;
     private SectionService sectionService;
@@ -73,11 +79,11 @@ public class SectionController {
         return new ModelAndView(SECTION_LIST_VIEW)
                 .addObject(SECTION_LIST_ATTR, sectionList)
                 .addObject(SHOW_FORUM_STATS_ATTR,true)
-                .addObject("postsCount", forumStatisticsProvider.getAllPostsCount())
-                .addObject("usersCount",forumStatisticsProvider.getAllUsersCount())
-                .addObject("onlineUsersCount",forumStatisticsProvider.getOnlineUsersCount())
-                .addObject("registeredUsersCount",forumStatisticsProvider.getOnlineRegisteredUsersCount())
-                .addObject("anonymousCount", forumStatisticsProvider.getOnlineAnonymousUsersCount());
+                .addObject(POST_COUNT_ATTR, forumStatisticsProvider.getAllPostsCount())
+                .addObject(USERS_COUNT_ATTR,forumStatisticsProvider.getAllUsersCount())
+                .addObject(ONLINE_USERS_COUNT_ATTR,forumStatisticsProvider.getOnlineUsersCount())
+                .addObject(REG_USERS_COUNT_ATTR,forumStatisticsProvider.getOnlineRegisteredUsersCount())
+                .addObject(ANONYMOUS_ATTR, forumStatisticsProvider.getOnlineAnonymousUsersCount());
     }
 
     /**
@@ -89,8 +95,7 @@ public class SectionController {
     public ModelAndView showSection(@PathVariable Long sectionId) throws NotFoundException {
         List<Section> sectionList = new ArrayList<>();
 
-        Section section = sectionService.get(sectionId);
-        sectionList.add(section);
+        sectionList.add(sectionService.get(sectionId));
         sectionService.prepareSectionsForView(sectionList);
 
         return new ModelAndView(SECTION_LIST_VIEW)
