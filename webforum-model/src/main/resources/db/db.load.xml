@@ -25,7 +25,12 @@
     <property name="now" value="now()" dbms="mysql"/>
     <property name="now" value="CURRENT_TIMESTAMP()" dbms="h2"/>
 
+
     <changeSet author="shv" id="INSERT_USER">
+        <preConditions onFail="CONTINUE">
+            <changeLogPropertyDefined property="loadDemoData" value="true"/>
+        </preConditions>
+
         <insert tableName="USER">
             <column name="ID" value="1"/>
             <column name="USERNAME" value="shv"/>
@@ -36,6 +41,7 @@
             <column name="REGISTRATIONDATE" valueComputed="${now}"/>
             <column name="POSTCOUNT" value="34"/>
         </insert>
+
         <insert tableName="USER">
             <column name="ID" value="2"/>
             <column name="USERNAME" value="visitor"/>
@@ -46,9 +52,8 @@
             <column name="REGISTRATIONDATE" valueComputed="${now}"/>
             <column name="POSTCOUNT" value="0"/>
         </insert>
-    </changeSet>
 
-    <changeSet author="shv" id="INSERT_SECTION">
+
         <insert tableName="SECTION">
             <column name="ID" value="1"/>
             <column name="NAME" value="Education"/>
@@ -84,9 +89,8 @@
             <column name="DESCRIPTION" value="Summary section"/>
             <column name="POSITION" value="4"/>
         </insert>
-    </changeSet>
 
-    <changeSet author="shv" id="INSERT_BRANCH">
+
         <insert tableName="BRANCH">
             <column name="ID" value="1"/>
             <column name="NAME" value="PhD"/>
@@ -114,7 +118,7 @@
 
         <insert tableName="BRANCH">
             <column name="ID" value="4"/>
-            <column name="NAME" value="Rostelecom, Java Developer, 2009 - 2012)"/>
+            <column name="NAME" value="Rostelecom, Java Developer, 2009 - 2012"/>
             <column name="DESCRIPTION" value="The biggest telecommunication company in Russia"/>
             <column name="SECTION" value="2"/>
             <column name="LASTPOST"/>
@@ -151,9 +155,8 @@
             <column name="SECTION" value="5"/>
             <column name="LASTPOST"/>
         </insert>
-    </changeSet>
 
-    <changeSet author="shv" id="INSERT_TOPIC">
+
         <insert tableName="TOPIC">
             <column name="ID" value="1"/>
             <column name="TITLE" value="PhD thesis"/>
@@ -290,9 +293,8 @@
             <column name="USER" value="1"/>
             <column name="BRANCH" value="8"/>
         </insert>
-    </changeSet>
 
-    <changeSet author="shv" id="INSERT_POST">
+
         <insert tableName="POST">
             <column name="ID" value="1"/>
             <column name="POSTCONTENT"
@@ -602,9 +604,8 @@
             <column name="USER" value="1"/>
             <column name="TOPIC" value="17"/>
         </insert>
-    </changeSet>
 
-    <changeSet  author="shv" id="UPDATE_BRANCH">
+
         <update  tableName="BRANCH">
             <column name="LASTPOST" value="3"/>
             <where>ID=1</where>
