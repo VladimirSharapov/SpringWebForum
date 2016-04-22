@@ -93,7 +93,7 @@ public class SectionControllerTest {
 
         when(sectionService.get(sectionId)).thenReturn(section);
 
-        mockMvc.perform(get("/sections/" + sectionId))
+        mockMvc.perform(get("/sections/{sectionId}",sectionId))
                 .andExpect(status().isOk())
                 .andExpect(view().name(SectionController.SECTION_LIST_VIEW))
                 .andExpect(model().attribute(SectionController.SECTION_LIST_ATTR,sectionList));
@@ -109,7 +109,7 @@ public class SectionControllerTest {
 
         when(sectionService.get(sectionId)).thenThrow(new NotFoundException());
         try {
-            mockMvc.perform(get("/sections/" + sectionId)).andExpect(status().isOk());
+            mockMvc.perform(get("/sections/{sectionId}",sectionId)).andExpect(status().isOk());
         } catch(Exception ex) {
              exClass = ex.getCause().getClass();
         }
