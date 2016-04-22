@@ -42,11 +42,11 @@ import java.util.List;
 @Controller
 public class TopicController {
 
-    private static final String POST_LIST_VIEW    = "postList";
-    private static final String TOPIC_ATTR        = "topic";
-    private static final String POST_ATTR         = "post";
-    private static final String POST_PAGE_ATTR    = "postsPage";
-    private static final String LAST_POST_ID_ATTR = "lastPostId";
+    public static final String POST_LIST_VIEW    = "postList";
+    public static final String TOPIC_ATTR        = "topic";
+    public static final String POST_ATTR         = "post";
+    public static final String POST_PAGE_ATTR    = "postsPage";
+    public static final String LAST_POST_ID_ATTR = "lastPostId";
 
     private BranchService branchService;
     private TopicService topicService;
@@ -87,7 +87,7 @@ public class TopicController {
                 .addObject(TOPIC_ATTR, topic)
                 .addObject(POST_PAGE_ATTR, postPage)
                 .addObject(POST_ATTR, new Post())
-                .addObject(LAST_POST_ID_ATTR,getLastPostId(postPage.getContent()));
+                .addObject(LAST_POST_ID_ATTR, getLastPostId(postPage.getContent()));
     }
 
     /**
