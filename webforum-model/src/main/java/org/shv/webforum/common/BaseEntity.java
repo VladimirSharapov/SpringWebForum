@@ -95,6 +95,6 @@ public abstract class BaseEntity {
     }
 
     public String toString() {
-        return id.toString();
+        return (id != null) ? id.toString() : null;
     }
 }
