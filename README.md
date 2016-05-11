@@ -1,4 +1,4 @@
-Installation instructions.
+INSTALLATION INSTRUCTIONS.
 
 1. Clone repository into directory (let's call it ROOT).
 
@@ -11,7 +11,9 @@ Installation instructions.
 4. Go to  http://yourtomcataddress:yourport/spring-webforum
 
 
-Project that demonstrates usage of Java technologies to create web forum.
+PROJECT DESCRIPTION.
+
+This project demonstrates usage of Java technologies to create web forum.
 Currently it lacks many features, but the purpose was just to demonstrate
 my knowledge of Java technology stack.
 
