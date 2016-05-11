@@ -5,9 +5,9 @@ Installation instructions.
 2. Go inside ROOT and run mvn clean install. If you want to skip test add -DskipTests.
 
 3. Take spring-webforum.war from ROOT/webforum-view/webforum-web-view/target and put it 
-   into Tomcat 7 webapps folder. (Should run on others app servers like Jetty, Weblogic, but I tested only on Tomcat 7). 
-   
+   into Tomcat 7 webapps folder. (Should run on other app servers like Jetty, Weblogic, but I tested only on Tomcat 7). 
    Application is by defaut in demo mode, so it uses h2 in memory database.   
+
 4. Go to  http://yourtomcataddress:yourport/spring-webforum
 
 
