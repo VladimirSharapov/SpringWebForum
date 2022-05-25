@@ -534,7 +534,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernateVersion>5.0.7.Final</hibernateVersion>
-        <springVersion>4.2.4.RELEASE</springVersion>
+        <springVersion>5.2.22.RELEASE</springVersion>
         <springSecurityVersion>3.2.3.RELEASE</springSecurityVersion>
         <rootDir>${basedir}</rootDir>
     </properties>
